@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#030712" />
-  <meta name="description" content="PERSONAL AI — owner-controlled local AI development command center and live roadmap." />
-  <title>PERSONAL AI — Command Center</title>
+  <meta name="description" content="PERSONAL AI — phase-based development command center and live roadmap." />
+  <title>PERSONAL AI — Build Phases</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23030712'/%3E%3Cpath d='M14 32h36M32 14v36' stroke='%2359d9ff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%232b7cff' stroke-width='2'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
@@ -19,36 +19,46 @@
       <div><div class="brand-title">PERSONAL AI</div><small id="brandVersion">COMMAND CENTER</small></div>
     </div>
     <nav class="nav" aria-label="Primary">
-      <button data-nav="home" class="active">Home</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
+      <button data-nav="home" class="active">Home</button><button data-nav="phases">Phases</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
     </nav>
     <div class="head-right"><div class="pill live" id="liveIndicator"><span class="pulse"></span><span id="liveText">CONNECTING</span></div><div class="pill" id="headerRelease">PERSONAL AI v1</div><button class="mobile-menu" id="menuBtn">MENU</button></div>
   </header>
   <div class="mobile-drawer" id="mobileDrawer">
-    <button data-nav="home">Home</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
+    <button data-nav="home">Home</button><button data-nav="phases">Phases</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
   </div>
 
   <main class="main">
     <section class="screen active" data-screen="home">
       <div class="home-grid">
         <div class="hero">
-          <div class="eyebrow">Independent Development / GitHub Live</div>
+          <div class="eyebrow">Phase-Based Development / GitHub Live</div>
           <h1 id="heroTitle">THE BUILD<span>IN MOTION</span></h1>
           <p class="hero-copy" id="heroCopy">Loading authoritative Personal AI build state…</p>
-          <div class="hero-actions"><button class="btn primary" id="viewRoadmap">Open Interactive Roadmap</button><button class="btn" id="viewActivity">View Activity</button></div>
+          <div class="hero-actions"><button class="btn primary" id="viewPhases">Open Build Phases</button><button class="btn" id="viewRoadmap">Detailed Roadmap</button><button class="btn" id="viewActivity">Activity</button></div>
           <div class="principles" id="principles"></div>
         </div>
         <aside class="release-card">
           <div class="release-head"><b>CURRENT BUILD STATE</b><span id="homeUpdated">—</span></div>
-          <div class="release-main"><small>Current release</small><strong id="releaseName">PERSONAL AI v1</strong><small style="margin-top:18px">Next milestone</small><strong id="focusTitle" style="font-size:20px">Loading…</strong><p id="focusSummary"></p></div>
+          <div class="release-main"><small>Current release</small><strong id="releaseName">PERSONAL AI v1</strong><small style="margin-top:18px">Active phase</small><strong id="focusTitle" style="font-size:20px">Loading…</strong><p id="focusSummary"></p></div>
           <div class="metric"><div class="metric-row"><span>FOUNDATION</span><span id="foundationLabel">—</span></div><div class="bar"><i id="foundationBar" style="width:0"></i></div></div>
           <div class="metric"><div class="metric-row"><span>PERSONAL AI v1</span><span id="v1Label">—</span></div><div class="bar"><i id="v1Bar" style="width:0"></i></div></div>
           <div class="status-grid" id="statusGrid"></div>
         </aside>
       </div>
+      <div class="home-phase-block">
+        <div class="phase-block-title"><div><div class="eyebrow">Build Sequence</div><h2>Where we are → what comes next</h2></div><button class="btn" id="openAllPhases">See Every Phase</button></div>
+        <div class="home-phase-strip" id="homePhaseStrip"></div>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="phases">
+      <div class="section-head"><div><div class="eyebrow">Primary Build Structure</div><h2>Build Phases</h2></div><p>Each major stage is separated into its own phase. Completed phases show what was built and how it was verified. The active EXE phase is isolated from what comes after it so progress is easy to read.</p></div>
+      <div class="phase-rail" id="phaseRail"></div>
+      <div class="phase-sections" id="phaseSections"></div>
     </section>
 
     <section class="screen" data-screen="roadmap">
-      <div class="section-head"><div><div class="eyebrow">Exact Development Path</div><h2>Roadmap</h2></div><p>The roadmap follows the actual Personal AI build sequence. Completed gates stay visible as verified history; the next active milestone is never presented as complete before its tests pass.</p></div>
+      <div class="section-head"><div><div class="eyebrow">Milestone-Level Detail</div><h2>Roadmap</h2></div><p>This is the lower-level view beneath the phase structure. Use it when you want the individual foundation gates, Personal AI v1 steps, objectives, verification evidence, and exact next action.</p></div>
       <div class="toolbar"><button class="filter active" data-filter="ALL">All</button><button class="filter" data-filter="COMPLETE">Complete</button><button class="filter" data-filter="NEXT">Next</button><button class="filter" data-filter="PLANNED">Planned</button><input class="search" id="roadmapSearch" placeholder="Search gates, tests, capabilities…" /><div class="pill" id="roadmapCounts">—</div></div>
       <div class="roadmap-layout"><div class="roadmap-list" id="roadmapList"></div><div class="detail-workspace" id="roadmapDetail"></div></div>
     </section>
@@ -73,14 +83,14 @@
       <div class="activity-layout">
         <div class="activity-feed" id="activityFeed"></div>
         <aside class="panel live-panel">
-          <div class="eyebrow">Live Data</div><h3>GitHub Status Bridge</h3><p>This page polls the repository's public roadmap data every 15 seconds. When the local Personal AI build commits an updated roadmap file to <code>main</code>, this command center can reflect that state without changing the website code.</p>
-          <div class="live-kv"><div><span>Current milestone</span><span id="activityCurrent">—</span></div><div><span>Data source</span><span id="dataSource">—</span></div><div><span>Last poll</span><span id="lastFetch">—</span></div><div><span>Roadmap updated</span><span id="sourceUpdated">—</span></div><div><span>Public mode</span><span>READ ONLY</span></div></div>
+          <div class="eyebrow">Live Data</div><h3>GitHub Status Bridge</h3><p>The website polls the public roadmap and phase data from GitHub. When the Personal AI build advances and its public status is committed, this command center can reflect the new phase without rebuilding the interface.</p>
+          <div class="live-kv"><div><span>Current phase</span><span id="activityPhase">—</span></div><div><span>Current milestone</span><span id="activityCurrent">—</span></div><div><span>Data source</span><span id="dataSource">—</span></div><div><span>Last poll</span><span id="lastFetch">—</span></div><div><span>Roadmap updated</span><span id="sourceUpdated">—</span></div><div><span>Public mode</span><span>READ ONLY</span></div></div>
         </aside>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><span>PERSONAL AI / DEVELOPMENT COMMAND CENTER</span><span>Owner-controlled · Local-first · Public milestone view · GitHub source of truth</span></footer>
+  <footer class="footer"><span>PERSONAL AI / PHASE-BASED DEVELOPMENT COMMAND CENTER</span><span>Owner-controlled · Local-first · GitHub source of truth</span></footer>
 </div>
 <script src="./assets/app.js"></script>
 </body>
