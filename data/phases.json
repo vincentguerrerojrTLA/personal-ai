@@ -1,0 +1,227 @@
+{
+  "updated_at": "2026-09-21T04:22:00-05:00",
+  "current_phase": "PHASE-04",
+  "phases": [
+    {
+      "code": "PHASE-00",
+      "number": "00",
+      "title": "Foundation",
+      "status": "COMPLETE",
+      "range": "Gates 00–15",
+      "progress": 100,
+      "summary": "Build the protected foundation before allowing the Personal AI to become increasingly autonomous.",
+      "detail": "This phase established identity, ownership/provenance, protected governance, persistent learning, sandbox self-coding, research/computer tools, multimodal foundations, resource efficiency, gaming coexistence, Discord, game operations, defensive anti-cheat, the agent factory, and isolated external-project integration.",
+      "completed": [
+        "Independent Personal AI identity and Git foundation",
+        "Protected core, checkpoints, recovery, and owner authority",
+        "Persistent memory / learning records and local model runtime",
+        "Sandbox self-coding with test → fix → retest loops",
+        "Research, computer tools, vision, image, video, and voice foundations",
+        "Resource governor and gaming coexistence controls",
+        "Discord, owned-game operations, and defensive anti-cheat foundations",
+        "Agent factory with inherited protected rules",
+        "THE LONG AFTER sandbox integration with real-project write protection"
+      ],
+      "verification": "All 16 foundational gates closed. Gate 15 verified intentional failure detection, repair + Godot retest, protected-core/regression checks, and unchanged real-project fingerprint.",
+      "unlocks": "A governed platform strong enough to begin Personal AI v1 runtime work.",
+      "next": "Unified Runtime Foundation",
+      "roadmap_code": "GATE 00"
+    },
+    {
+      "code": "PHASE-01",
+      "number": "01",
+      "title": "Unified Runtime Foundation",
+      "status": "COMPLETE",
+      "range": "Personal AI v1 · Step 1",
+      "progress": 100,
+      "summary": "Bring the validated foundation systems behind one deterministic runtime before enabling self-improvement.",
+      "detail": "The AI's protected core, memory, local model, self-coding, research/tools, resource controls, and project boundaries were unified behind a single runtime baseline.",
+      "completed": [
+        "Unified runtime path established",
+        "Deterministic self-test path",
+        "Critical-resource defer behavior",
+        "Live resource status reporting",
+        "Full regression and protected-core verification",
+        "Clean checkpointed versioned baseline"
+      ],
+      "verification": "Deterministic targeted tests PASS; critical-resource defer PASS; unified runtime self-test PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
+      "unlocks": "A stable known-good runtime that can safely evaluate controlled self-change.",
+      "next": "Self-Improvement Engine",
+      "roadmap_code": "V1-STEP-1"
+    },
+    {
+      "code": "PHASE-02",
+      "number": "02",
+      "title": "Self-Improvement Engine",
+      "status": "COMPLETE",
+      "range": "Personal AI v1 · Step 2",
+      "progress": 100,
+      "summary": "Teach the runtime to test candidate changes, reject regressions, promote better changes, and roll back failed promotion.",
+      "detail": "Self-improvement moved beyond simply writing sandbox code. Candidate changes became measurable: worse changes are rejected, beneficial candidates can be promoted after safeguards, and failed post-promotion validation rolls back to the known-good state.",
+      "completed": [
+        "Candidate self-change evaluation",
+        "Regression rejection",
+        "Benchmark-based promotion of better candidates",
+        "Post-promotion validation",
+        "Automatic rollback on failed validation",
+        "Learning records from improvement outcomes"
+      ],
+      "verification": "Worse self-change rejected PASS; better self-change benchmarked/promoted PASS; failed post-promotion validation rollback PASS; learning record PASS; regression PASS; protected core PASS; checkpoint PASS.",
+      "unlocks": "Controlled, measurable self-improvement without surrendering owner governance.",
+      "next": "Adaptive Hardware Optimizer",
+      "roadmap_code": "V1-STEP-2"
+    },
+    {
+      "code": "PHASE-03",
+      "number": "03",
+      "title": "Adaptive Hardware Optimizer",
+      "status": "COMPLETE",
+      "range": "Personal AI v1 · Step 3",
+      "progress": 100,
+      "summary": "Make the AI learn how to use the owner's actual hardware efficiently and adapt when hardware pressure changes.",
+      "detail": "The runtime now fingerprints machine capabilities, observes CPU/RAM/GPU/VRAM/disk pressure, adapts concurrency and workload strategy, records strategy outcomes, and falls back safely across different hardware conditions.",
+      "completed": [
+        "Stable machine fingerprint",
+        "CPU / RAM / disk profile",
+        "GPU / VRAM discovery with fallback",
+        "Dynamic pressure-aware strategy",
+        "Adaptive concurrency",
+        "Strategy-outcome learning",
+        "Cross-hardware fallback behavior"
+      ],
+      "verification": "Machine fingerprint PASS; hardware profile PASS; GPU/VRAM fallback PASS; pressure strategy PASS; adaptive concurrency PASS; strategy learning PASS; cross-hardware fallback PASS; regression PASS; protected core PASS; checkpoint PASS.",
+      "unlocks": "A runtime that can intelligently conserve resources and coexist with gaming / foreground workloads.",
+      "next": "Unified PersonalAI.exe v1",
+      "roadmap_code": "V1-STEP-3"
+    },
+    {
+      "code": "PHASE-04",
+      "number": "04",
+      "title": "Unified PersonalAI.exe v1",
+      "status": "NEXT",
+      "range": "Personal AI v1 · Step 4",
+      "progress": 0,
+      "summary": "Package the validated runtime into the unified owner-facing PersonalAI.exe v1 application surface.",
+      "detail": "This is the active next build phase. The executable becomes the unified way to start and operate the AI while preserving the protected core, self-improvement safeguards, hardware adaptation, checkpoints, rollback, and clean Git state.",
+      "completed": [],
+      "targets": [
+        "Unified PersonalAI.exe launch path",
+        "Owner-facing command/status interface",
+        "Runtime + self-improvement + hardware optimizer behind one executable",
+        "Deterministic startup verification",
+        "Protected-core and resource-governor status visibility",
+        "Checkpoint / rollback visibility and recovery path",
+        "No weakening of project isolation or owner control"
+      ],
+      "verification": "Not yet complete. Phase closes only after executable startup tests, targeted tests, regression, protected-core verification, checkpoint, and clean-state checks pass.",
+      "unlocks": "A single practical Personal AI application instead of separate development-stage components.",
+      "next": "Post-EXE Operational Autonomy",
+      "roadmap_code": "V1-STEP-4"
+    },
+    {
+      "code": "PHASE-05",
+      "number": "05",
+      "title": "Post-EXE Operational Autonomy",
+      "status": "PLANNED",
+      "range": "After PersonalAI.exe v1",
+      "progress": 0,
+      "summary": "Turn the unified executable into a persistent desktop companion that can safely carry longer tasks under owner control.",
+      "detail": "This phase is intentionally not locked into exact sub-steps until the EXE phase is verified. The direction is persistent operation, better task continuation, scheduling, recovery, and owner-visible control without expanding privileges blindly.",
+      "targets": [
+        "Persistent desktop companion behavior",
+        "Longer multi-step task continuation",
+        "Owner-visible task queue / status",
+        "Safe scheduled work and recovery",
+        "Resource-aware background operation",
+        "Explicit permission boundaries for actions"
+      ],
+      "verification": "Planned direction only. Detailed acceptance tests will be defined after Phase 04 closes.",
+      "unlocks": "A useful always-available AI that can operate across longer periods without constant prompting.",
+      "next": "Expanded Specialist Agent Network"
+    },
+    {
+      "code": "PHASE-06",
+      "number": "06",
+      "title": "Expanded Specialist Agent Network",
+      "status": "PLANNED",
+      "range": "Future expansion",
+      "progress": 0,
+      "summary": "Expand the agent factory into a richer team of governed specialist agents working through the unified AI.",
+      "detail": "Specialists can become more capable, but every child agent continues to inherit the protected master rules, project isolation, resource limits, and owner authority.",
+      "targets": [
+        "Richer coding and verification agents",
+        "Research and documentation specialists",
+        "Optimization specialists",
+        "Vision / image / video / voice specialists",
+        "Windows / Discord / game operations specialists",
+        "Explicit task scopes and permission inheritance"
+      ],
+      "verification": "Future phase. Exact agent benchmarks will be defined when activated.",
+      "unlocks": "Parallel specialist work without creating independent uncontrolled systems.",
+      "next": "Deep Research & Knowledge Expansion"
+    },
+    {
+      "code": "PHASE-07",
+      "number": "07",
+      "title": "Deep Research & Knowledge Expansion",
+      "status": "PLANNED",
+      "range": "Future expansion",
+      "progress": 0,
+      "summary": "Extend source-grounded research into deeper, longer-horizon investigation and project knowledge workflows.",
+      "detail": "The focus is higher-quality research, source tracking, evidence retention, project-specific knowledge, and longer investigations while preserving privacy and source separation.",
+      "targets": [
+        "Long-horizon research plans",
+        "Source / evidence tracking",
+        "Project-specific research memory",
+        "Cross-source synthesis",
+        "Research quality evaluation",
+        "Private/public data separation"
+      ],
+      "verification": "Future phase. Detailed benchmark suite will be defined when activated.",
+      "unlocks": "A stronger research partner for software, game development, technical work, and new domains.",
+      "next": "Multimodal Expansion"
+    },
+    {
+      "code": "PHASE-08",
+      "number": "08",
+      "title": "Multimodal Expansion",
+      "status": "PLANNED",
+      "range": "Future expansion",
+      "progress": 0,
+      "summary": "Deepen vision, image, video, voice, and audio capabilities while keeping them modular and resource-aware.",
+      "detail": "The foundation already exists; this phase turns those foundations into more capable practical workflows integrated with the Personal AI runtime.",
+      "targets": [
+        "Stronger visual understanding",
+        "Integrated image workflows",
+        "Integrated video workflows",
+        "Low-friction voice conversation",
+        "Audio understanding / creation workflows",
+        "Resource-aware modality scheduling"
+      ],
+      "verification": "Future phase. Modality-specific acceptance tests will be defined when activated.",
+      "unlocks": "A more complete multimodal local assistant.",
+      "next": "External Project Operations"
+    },
+    {
+      "code": "PHASE-09",
+      "number": "09",
+      "title": "External Project Operations",
+      "status": "PLANNED",
+      "range": "Future expansion",
+      "progress": 0,
+      "summary": "Scale the sandbox-first integration model to more external projects without merging their identity or granting uncontrolled writes.",
+      "detail": "THE LONG AFTER provides the first validated integration pattern. Future projects should receive the same isolation, scoped agents, controlled promotion, and real-source protection.",
+      "targets": [
+        "Reusable external-project integration contract",
+        "Project-specific agents and memory isolation",
+        "Sandbox-first build/test loops",
+        "Controlled promotion / owner approval paths",
+        "Real-project fingerprint and write protection",
+        "Per-project audit and rollback"
+      ],
+      "verification": "Future phase. Project-specific acceptance gates will be created as integrations are added.",
+      "unlocks": "A Personal AI platform that can safely operate across multiple owner projects.",
+      "next": "Further phases will be defined from verified results rather than guessed in advance."
+    }
+  ]
+}
