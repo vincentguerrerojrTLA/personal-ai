@@ -46,6 +46,20 @@
           <div class="status-grid" id="statusGrid"></div>
         </aside>
       </div>
+
+      <div class="home-gauge-shell" id="homeGaugeShell">
+        <div class="progress-gauge-panel">
+          <div class="progress-gauge-card">
+            <div class="progress-gauge" style="--p:40"><div class="progress-gauge-value">40<small>%</small></div></div>
+            <div class="progress-gauge-copy"><b>Overall Build Progress</b><strong>4 of 10 major phases fully complete</strong><p>Overall percentage across the major build phases.</p><span class="gauge-note">LIVE FROM PHASE DATA</span></div>
+          </div>
+          <div class="progress-gauge-card current">
+            <div class="progress-gauge" style="--p:0"><div class="progress-gauge-value">0<small>%</small></div></div>
+            <div class="progress-gauge-copy"><b>Current Phase Progress</b><strong>Phase 04 · Unified PersonalAI.exe v1</strong><p>The active EXE phase starts at 0% until verified work closes items in this phase.</p><span class="gauge-note">NEXT · PERSONAL AI v1 STEP 4</span></div>
+          </div>
+        </div>
+      </div>
+
       <div class="home-phase-block">
         <div class="phase-block-title"><div><div class="eyebrow">Build Sequence</div><h2>Where we are → what comes next</h2></div><button class="btn" id="openAllPhases">See Every Phase</button></div>
         <div class="home-phase-strip" id="homePhaseStrip"></div>
@@ -54,6 +68,20 @@
 
     <section class="screen" data-screen="phases">
       <div class="section-head"><div><div class="eyebrow">Primary Build Structure</div><h2>Build Phases</h2></div><p>Each major stage is separated into its own phase. Completed phases show what was built and how it was verified. The active EXE phase is isolated from what comes after it so progress is easy to read.</p></div>
+
+      <div class="home-gauge-shell phase-summary-gauges">
+        <div class="progress-gauge-panel">
+          <div class="progress-gauge-card">
+            <div class="progress-gauge" style="--p:40"><div class="progress-gauge-value">40<small>%</small></div></div>
+            <div class="progress-gauge-copy"><b>Overall Build Progress</b><strong>4 of 10 major phases fully complete</strong><p>Completed, active, and planned phases are combined into one visible overall gauge.</p><span class="gauge-note">PHASE-BASED CALCULATION</span></div>
+          </div>
+          <div class="progress-gauge-card current">
+            <div class="progress-gauge" style="--p:0"><div class="progress-gauge-value">0<small>%</small></div></div>
+            <div class="progress-gauge-copy"><b>Current Phase Progress</b><strong>Phase 04 · Unified PersonalAI.exe v1</strong><p>This gauge increases only when verified EXE-phase work is completed.</p><span class="gauge-note">CURRENT ACTIVE PHASE</span></div>
+          </div>
+        </div>
+      </div>
+
       <div class="phase-rail" id="phaseRail"></div>
       <div class="phase-sections" id="phaseSections"></div>
     </section>
