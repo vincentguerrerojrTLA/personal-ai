@@ -19,3 +19,5 @@ Android assignments:
 - Splash/store/web assets: approved brand family where applicable.
 
 Note: Binary source artwork is integrated only from the exact approved source asset; placeholders must never be represented as the final approved dog artwork.
+
+CI refresh: 2026-09-22 — retriggered after an abnormally long queued run.
