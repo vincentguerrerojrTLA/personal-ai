@@ -33,7 +33,7 @@ jobs:
           KYLOW_KEYSTORE_PATH: ../kylow-release.jks
           KYLOW_KEYSTORE_PASSWORD: ${{ secrets.KYLOW_KEYSTORE_PASSWORD }}
           KYLOW_KEY_ALIAS: ${{ secrets.KYLOW_KEY_ALIAS }}
-          KYLOW_KEY_PASSWORD: ${{ secrets.KYLOW_KEY_PASSWORD }}
+          KYLOW_KEY_PASSWORD: ${{ secrets.KYLOW_KEYSTORE_PASSWORD }}
         run: gradle assembleRelease
       - name: Remove signing key
         if: always()
