@@ -24,6 +24,18 @@ class MainActivity:AppCompatActivity(){
   findViewById<Button>(R.id.filesButton).setOnClickListener{append("Kylow","Local Library is enabled. File importing and plugin-backed storage are the next integration layer.")}
   findViewById<Button>(R.id.webButton).setOnClickListener{append("Kylow","Web is an optional tool; core Kylow remains independent.")}
   findViewById<Button>(R.id.tasksButton).setOnClickListener{append("Kylow","Tasks are part of Kylow and persist independently of a PC.")}
+  fun prompt(text:String){input.setText(text);input.setSelection(input.text.length);input.requestFocus()}
+  findViewById<Button>(R.id.chatHomeButton).setOnClickListener{input.requestFocus()}
+  findViewById<Button>(R.id.tasksHomeButton).setOnClickListener{append("Kylow","Tasks are ready for the next functional integration layer.")}
+  findViewById<Button>(R.id.filesHomeButton).setOnClickListener{append("Kylow","Local Library is ready for file integration.")}
+  findViewById<Button>(R.id.webHomeButton).setOnClickListener{append("Kylow","Web Search will remain optional; core Kylow stays independent.")}
+  findViewById<Button>(R.id.pcHomeButton).setOnClickListener{append("Kylow","PC pairing is optional. This phone remains a first-class Kylow device.")}
+  findViewById<Button>(R.id.createHomeButton).setOnClickListener{prompt("Create ")}
+  findViewById<Button>(R.id.learnHomeButton).setOnClickListener{prompt("Teach me about ")}
+  findViewById<Button>(R.id.moreHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
+  findViewById<Button>(R.id.canDoButton).setOnClickListener{prompt("What can you do?")}
+  findViewById<Button>(R.id.planButton).setOnClickListener{prompt("Help me plan ")}
+  findViewById<Button>(R.id.imageButton).setOnClickListener{prompt("Create an image of ")}
   store.latest()?.let{current=it.id;transcript.append(it.body);render()}
  }
  private fun localReply(q:String)=when{q.lowercase().matches(Regex(".*\\b(hi|hello|hey)\\b.*"))->"Hey! I’m Kylow. I’m running directly on this phone.";else->"I received that locally. Persistent chat storage is active; the independent model runtime is the next major engine layer."}
