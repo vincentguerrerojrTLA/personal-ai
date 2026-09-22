@@ -5,7 +5,7 @@ import psutil,pyautogui
 from fastapi import FastAPI,Header,HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from secure_pairing import enroll,authenticate,revoke
+from secure_pairing import enroll,authenticate,revoke,verify_fresh_request
 
 TOKEN=os.environ.get("KYLOW_AGENT_TOKEN","")
 ROOT=Path(os.environ.get("KYLOW_AGENT_HOME",Path.home()/".kylow-agent")); ROOT.mkdir(parents=True,exist_ok=True)
@@ -20,9 +20,12 @@ class Action(BaseModel):
 
 ALLOW={"godot":os.environ.get("KYLOW_GODOT_PATH","godot"),"chrome":os.environ.get("KYLOW_CHROME_PATH",r"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"),"vscode":os.environ.get("KYLOW_VSCODE_PATH","code"),"terminal":"wt.exe"}
 
-def device_auth(device_id,authorization):
+def device_auth(device_id,authorization,nonce=None,timestamp=None):
  if not device_id or not authorization or not authorization.startswith("Bearer "): raise HTTPException(401,"Unauthorized")
  if not authenticate(device_id,authorization[7:]): raise HTTPException(401,"Unauthorized")
+ if nonce is not None or timestamp is not None:
+  try: verify_fresh_request(device_id,nonce,timestamp)
+  except ValueError as e: raise HTTPException(409,str(e))
 def legacy_auth(v):
  if not TOKEN or not v or not hmac.compare_digest(v,f"Bearer {TOKEN}"): raise HTTPException(401,"Unauthorized")
 def guard():
@@ -53,17 +56,17 @@ def pair(req:PairRequest):
  return {"ok":True,"protocol_version":1,"device_id":req.device_id,"credential":credential}
 
 @app.get("/kylow/v1/health")
-def v1_health(x_kylow_device_id:str|None=Header(None),authorization:str|None=Header(None)):
- device_auth(x_kylow_device_id,authorization)
+def v1_health(x_kylow_device_id:str|None=Header(None),x_kylow_nonce:str|None=Header(None),x_kylow_timestamp:str|None=Header(None),authorization:str|None=Header(None)):
+ device_auth(x_kylow_device_id,authorization,x_kylow_nonce,x_kylow_timestamp)
  return {"ok":True,"protocol_version":1,"stopped":STOP.exists(),"host":os.environ.get("COMPUTERNAME","windows"),"time":int(time.time())}
 
 @app.post("/kylow/v1/action")
-def v1_action(a:Action,x_kylow_device_id:str|None=Header(None),authorization:str|None=Header(None)):
- device_auth(x_kylow_device_id,authorization); return run_action(a)
+def v1_action(a:Action,x_kylow_device_id:str|None=Header(None),x_kylow_nonce:str|None=Header(None),x_kylow_timestamp:str|None=Header(None),authorization:str|None=Header(None)):
+ device_auth(x_kylow_device_id,authorization,x_kylow_nonce,x_kylow_timestamp); return run_action(a)
 
 @app.post("/kylow/v1/unpair")
-def v1_unpair(x_kylow_device_id:str|None=Header(None),authorization:str|None=Header(None)):
- device_auth(x_kylow_device_id,authorization)
+def v1_unpair(x_kylow_device_id:str|None=Header(None),x_kylow_nonce:str|None=Header(None),x_kylow_timestamp:str|None=Header(None),authorization:str|None=Header(None)):
+ device_auth(x_kylow_device_id,authorization,x_kylow_nonce,x_kylow_timestamp)
  if not revoke(x_kylow_device_id): raise HTTPException(404,"Device not found")
  audit("device_unpaired",{"device_id":x_kylow_device_id})
  return {"ok":True}
