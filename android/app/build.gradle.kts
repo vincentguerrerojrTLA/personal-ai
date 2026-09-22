@@ -1,4 +1,4 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
-android { namespace="com.kylow.mobile"; compileSdk=35; defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=7; versionName="0.5.0" }; compileOptions { sourceCompatibility=JavaVersion.VERSION_17; targetCompatibility=JavaVersion.VERSION_17 } }
+android { namespace="com.kylow.mobile"; compileSdk=35; defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=8; versionName="0.6.0" }; compileOptions { sourceCompatibility=JavaVersion.VERSION_17; targetCompatibility=JavaVersion.VERSION_17 } }
 kotlin { jvmToolchain(17) }
 dependencies { implementation("androidx.core:core-ktx:1.15.0"); implementation("androidx.appcompat:appcompat:1.7.0"); testImplementation("junit:junit:4.13.2") }
