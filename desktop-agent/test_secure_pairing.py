@@ -22,4 +22,13 @@ class SecurePairingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             sp.enroll(p["pairing_id"],"wrong-code","phone-1")
 
+    def test_nonce_is_one_use(self):
+        sp.verify_fresh_request("phone-1","abcdefghijklmnop",1000,now=1000)
+        with self.assertRaises(ValueError):
+            sp.verify_fresh_request("phone-1","abcdefghijklmnop",1000,now=1000)
+
+    def test_stale_request_rejected(self):
+        with self.assertRaises(ValueError):
+            sp.verify_fresh_request("phone-1","abcdefghijklmnop",1,now=1000)
+
 if __name__=="__main__": unittest.main()
