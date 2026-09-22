@@ -1,0 +1,5 @@
+package com.kylow.mobile
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+class RemotePcPairActivity:AppCompatActivity(){override fun onCreate(b:Bundle?){super.onCreate(b);val root=LinearLayout(this).apply{orientation=LinearLayout.VERTICAL;setPadding(32,32,32,32)};val endpoint=EditText(this).apply{hint="Secure PC endpoint (https://...)"};val token=EditText(this).apply{hint="Pairing credential"};val save=Button(this).apply{text="Pair PC";setOnClickListener{val e=endpoint.text.toString();if(!e.startsWith("https://")){Toast.makeText(this@RemotePcPairActivity,"HTTPS required",Toast.LENGTH_LONG).show()}else{RemotePcConfig.save(this@RemotePcPairActivity,e,token.text.toString());Toast.makeText(this@RemotePcPairActivity,"PC paired",Toast.LENGTH_SHORT).show();finish()}}};root.addView(TextView(this).apply{text="Pair your Kylow Windows node";textSize=22f});root.addView(endpoint);root.addView(token);root.addView(save);setContentView(root)}}
