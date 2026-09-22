@@ -3,247 +3,645 @@
     "project": "PERSONAL AI",
     "site": "Command Center",
     "version": "v1",
-    "updated_at": "2026-09-21T03:45:00-05:00",
+    "updated_at": "2026-09-21T22:30:00-05:00",
     "refresh_seconds": 15,
     "source": "github",
     "repository": "vincentguerrerojrTLA/personal-ai"
   },
   "current": {
-    "release": "PERSONAL AI v1",
-    "focus_code": "V1-STEP-4",
-    "focus_title": "Unified PersonalAI.exe v1",
+    "release": "KYLO / Personal AI",
+    "focus_code": "KYLO-TRUST-01",
+    "focus_title": "Kylo Trust Core v1",
     "focus_status": "NEXT",
     "headline": "THE BUILD, IN MOTION",
-    "summary": "A local-first, owner-controlled AI advancing through verified gates, self-improvement, adaptive hardware control, and a unified runtime while keeping governance and external projects isolated.",
+    "summary": "Kylo is one owner-controlled AI across PC and mobile. Current work hardens privacy, safety, consent, customer isolation, legal/release compliance, and Android-first mobile delivery before public distribution.",
     "foundation_complete": 16,
     "foundation_total": 16,
     "v1_complete": 3,
     "v1_next": "Step 4",
     "principles": [
-      "OWNER STAYS IN CONTROL",
-      "LEARN → TEST → IMPROVE",
-      "KEEP PROJECTS SEPARATE"
+      "LOYALTY · HONESTY · TRUST",
+      "PRIVACY & SAFETY BY DESIGN",
+      "ONE KYLO · MULTIPLE ENDPOINTS"
     ]
   },
   "status": [
-    {"label":"Protected Core","value":"VERIFIED","tone":"good"},
-    {"label":"Local Model","value":"qwen3:8b","tone":"info"},
-    {"label":"Regression","value":"PASS","tone":"good"},
-    {"label":"Checkpoint","value":"PASS","tone":"good"},
-    {"label":"Self-Improvement","value":"COMPLETE","tone":"good"},
-    {"label":"Hardware Optimizer","value":"COMPLETE","tone":"good"},
-    {"label":"TLA Integration","value":"VALIDATED","tone":"info"},
-    {"label":"Real-Project Writes","value":"DISABLED","tone":"safe"}
+    {
+      "label": "Trust Core",
+      "value": "ACTIVE",
+      "tone": "info"
+    },
+    {
+      "label": "Customer Isolation",
+      "value": "REQUIRED",
+      "tone": "safe"
+    },
+    {
+      "label": "Plugin Approval",
+      "value": "OWNER ONLY",
+      "tone": "safe"
+    },
+    {
+      "label": "Android APK",
+      "value": "PLANNED",
+      "tone": "info"
+    },
+    {
+      "label": "Protected Core",
+      "value": "VERIFIED",
+      "tone": "good"
+    },
+    {
+      "label": "Local Model",
+      "value": "qwen3:8b",
+      "tone": "info"
+    },
+    {
+      "label": "Regression",
+      "value": "PASS",
+      "tone": "good"
+    },
+    {
+      "label": "Checkpoint",
+      "value": "PASS",
+      "tone": "good"
+    },
+    {
+      "label": "Self-Improvement",
+      "value": "COMPLETE",
+      "tone": "good"
+    },
+    {
+      "label": "Hardware Optimizer",
+      "value": "COMPLETE",
+      "tone": "good"
+    },
+    {
+      "label": "TLA Integration",
+      "value": "VALIDATED",
+      "tone": "info"
+    },
+    {
+      "label": "Real-Project Writes",
+      "value": "DISABLED",
+      "tone": "safe"
+    }
   ],
   "roadmap": [
     {
-      "code":"GATE 00","title":"Foundation","phase":"FOUNDATION","status":"COMPLETE","sort":0,
-      "summary":"Independent identity, ownership/provenance records, project structure, and Git foundation.",
-      "objective":"Establish the AI as its own owner-controlled software entity before connecting it to external projects.",
-      "unlocked":"A standalone versioned project with documented identity, ownership intent, provenance, and development rules.",
-      "evidence":"Founding records, project structure, and version-control foundation established.",
-      "next_action":"Complete"
+      "code": "GATE 00",
+      "title": "Foundation",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 0,
+      "summary": "Independent identity, ownership/provenance records, project structure, and Git foundation.",
+      "objective": "Establish the AI as its own owner-controlled software entity before connecting it to external projects.",
+      "unlocked": "A standalone versioned project with documented identity, ownership intent, provenance, and development rules.",
+      "evidence": "Founding records, project structure, and version-control foundation established.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 01","title":"Protected Core","phase":"FOUNDATION","status":"COMPLETE","sort":1,
-      "summary":"Owner authority, protected rules, safe startup verification, emergency stop, recovery boundaries, backups, and checkpoints.",
-      "objective":"Create governance the AI cannot silently weaken and preserve owner shutdown/recovery control.",
-      "unlocked":"Verified protected-core startup and recovery boundaries.",
-      "evidence":"Protected-core verification and checkpoint/recovery path passed.",
-      "next_action":"Complete"
+      "code": "GATE 01",
+      "title": "Protected Core",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 1,
+      "summary": "Owner authority, protected rules, safe startup verification, emergency stop, recovery boundaries, backups, and checkpoints.",
+      "objective": "Create governance the AI cannot silently weaken and preserve owner shutdown/recovery control.",
+      "unlocked": "Verified protected-core startup and recovery boundaries.",
+      "evidence": "Protected-core verification and checkpoint/recovery path passed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 02","title":"Infant Learning","phase":"FOUNDATION","status":"COMPLETE","sort":2,
-      "summary":"Persistent memory, experience, skill, failure, and efficiency records plus local conversational model integration.",
-      "objective":"Let the AI accumulate structured experience from its first operational state instead of relying on stateless conversations.",
-      "unlocked":"Persistent learning records and local conversation through Ollama / qwen3:8b.",
-      "evidence":"Memory systems and local-model self-test passed.",
-      "next_action":"Complete"
+      "code": "GATE 02",
+      "title": "Infant Learning",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 2,
+      "summary": "Persistent memory, experience, skill, failure, and efficiency records plus local conversational model integration.",
+      "objective": "Let the AI accumulate structured experience from its first operational state instead of relying on stateless conversations.",
+      "unlocked": "Persistent learning records and local conversation through Ollama / qwen3:8b.",
+      "evidence": "Memory systems and local-model self-test passed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 03","title":"Self-Coding Core","phase":"FOUNDATION","status":"COMPLETE","sort":3,
-      "summary":"Scoped sandbox code generation, testing, repair/evaluation loops, learning records, and protected-core regression.",
-      "objective":"Allow code creation and repair without granting unrestricted access to protected or production code.",
-      "unlocked":"Model-driven sandbox coding with test → fix → retest behavior.",
-      "evidence":"Sandbox self-coding evaluation loop passed with promoted verification, learning-record verification, regression, and checkpoint.",
-      "next_action":"Complete"
+      "code": "GATE 03",
+      "title": "Self-Coding Core",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 3,
+      "summary": "Scoped sandbox code generation, testing, repair/evaluation loops, learning records, and protected-core regression.",
+      "objective": "Allow code creation and repair without granting unrestricted access to protected or production code.",
+      "unlocked": "Model-driven sandbox coding with test → fix → retest behavior.",
+      "evidence": "Sandbox self-coding evaluation loop passed with promoted verification, learning-record verification, regression, and checkpoint.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 04","title":"Research & Computer Tools","phase":"FOUNDATION","status":"COMPLETE","sort":4,
-      "summary":"Source-grounded research and authorized computer/tool interaction foundation.",
-      "objective":"Give the AI controlled access to live research and task tools while preserving permission boundaries.",
-      "unlocked":"Grounded research and authorized tool orchestration.",
-      "evidence":"Research/tool foundation validated under project governance.",
-      "next_action":"Complete"
+      "code": "GATE 04",
+      "title": "Research & Computer Tools",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 4,
+      "summary": "Source-grounded research and authorized computer/tool interaction foundation.",
+      "objective": "Give the AI controlled access to live research and task tools while preserving permission boundaries.",
+      "unlocked": "Grounded research and authorized tool orchestration.",
+      "evidence": "Research/tool foundation validated under project governance.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 05","title":"Vision","phase":"FOUNDATION","status":"COMPLETE","sort":5,
-      "summary":"Visual understanding and perception foundation.",
-      "objective":"Enable the AI to interpret visual inputs and screen/image context.",
-      "unlocked":"Vision-capable task workflows.",
-      "evidence":"Vision foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 05",
+      "title": "Vision",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 5,
+      "summary": "Visual understanding and perception foundation.",
+      "objective": "Enable the AI to interpret visual inputs and screen/image context.",
+      "unlocked": "Vision-capable task workflows.",
+      "evidence": "Vision foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 06","title":"Image Creation","phase":"FOUNDATION","status":"COMPLETE","sort":6,
-      "summary":"Image generation and editing workflow foundation.",
-      "objective":"Enable controlled image creation and editing as a replaceable capability module.",
-      "unlocked":"Image-generation/editing workflows.",
-      "evidence":"Image capability foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 06",
+      "title": "Image Creation",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 6,
+      "summary": "Image generation and editing workflow foundation.",
+      "objective": "Enable controlled image creation and editing as a replaceable capability module.",
+      "unlocked": "Image-generation/editing workflows.",
+      "evidence": "Image capability foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 07","title":"Video Creation","phase":"FOUNDATION","status":"COMPLETE","sort":7,
-      "summary":"Video generation and editing workflow foundation.",
-      "objective":"Establish a governed path for future video generation/editing workloads.",
-      "unlocked":"Video-capability workflow foundation.",
-      "evidence":"Video foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 07",
+      "title": "Video Creation",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 7,
+      "summary": "Video generation and editing workflow foundation.",
+      "objective": "Establish a governed path for future video generation/editing workloads.",
+      "unlocked": "Video-capability workflow foundation.",
+      "evidence": "Video foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 08","title":"Voice","phase":"FOUNDATION","status":"COMPLETE","sort":8,
-      "summary":"Speech input/output and conversational interaction foundation.",
-      "objective":"Support spoken interaction without making voice services part of the AI's identity.",
-      "unlocked":"Voice-capable interaction workflows.",
-      "evidence":"Voice foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 08",
+      "title": "Voice",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 8,
+      "summary": "Speech input/output and conversational interaction foundation.",
+      "objective": "Support spoken interaction without making voice services part of the AI's identity.",
+      "unlocked": "Voice-capable interaction workflows.",
+      "evidence": "Voice foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 09","title":"Resource Efficiency","phase":"FOUNDATION","status":"COMPLETE","sort":9,
-      "summary":"Adaptive resource governor, workload admission profiles, and defer behavior for CPU/GPU/RAM/VRAM/power conservation.",
-      "objective":"Keep the AI useful while reducing unnecessary resource use and yielding to higher-priority owner workloads such as gaming.",
-      "unlocked":"Resource-aware workload admission and deferral.",
-      "evidence":"Adaptive resource governor tests, full regression, protected-core verification, and checkpoint passed.",
-      "next_action":"Complete"
+      "code": "GATE 09",
+      "title": "Resource Efficiency",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 9,
+      "summary": "Adaptive resource governor, workload admission profiles, and defer behavior for CPU/GPU/RAM/VRAM/power conservation.",
+      "objective": "Keep the AI useful while reducing unnecessary resource use and yielding to higher-priority owner workloads such as gaming.",
+      "unlocked": "Resource-aware workload admission and deferral.",
+      "evidence": "Adaptive resource governor tests, full regression, protected-core verification, and checkpoint passed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 10","title":"Gaming Mode","phase":"FOUNDATION","status":"COMPLETE","sort":10,
-      "summary":"Controlled game-aware operating mode foundation.",
-      "objective":"Allow the AI to coexist with games without becoming a cheating or competitive-advantage tool.",
-      "unlocked":"Bounded game-aware resource/operation mode.",
-      "evidence":"Gaming-mode foundation completed within owner and safety boundaries.",
-      "next_action":"Complete"
+      "code": "GATE 10",
+      "title": "Gaming Mode",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 10,
+      "summary": "Controlled game-aware operating mode foundation.",
+      "objective": "Allow the AI to coexist with games without becoming a cheating or competitive-advantage tool.",
+      "unlocked": "Bounded game-aware resource/operation mode.",
+      "evidence": "Gaming-mode foundation completed within owner and safety boundaries.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 11","title":"Discord Integration","phase":"FOUNDATION","status":"COMPLETE","sort":11,
-      "summary":"Bounded Discord integration with explicit permissions and regression/protected-core verification.",
-      "objective":"Support Discord operations without creating an unrestricted external-action channel.",
-      "unlocked":"Permission-limited Discord workflows.",
-      "evidence":"Discord foundation proof, full regression, protected-core verification, and checkpoint passed.",
-      "next_action":"Complete"
+      "code": "GATE 11",
+      "title": "Discord Integration",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 11,
+      "summary": "Bounded Discord integration with explicit permissions and regression/protected-core verification.",
+      "objective": "Support Discord operations without creating an unrestricted external-action channel.",
+      "unlocked": "Permission-limited Discord workflows.",
+      "evidence": "Discord foundation proof, full regression, protected-core verification, and checkpoint passed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 12","title":"Game Operations","phase":"FOUNDATION","status":"COMPLETE","sort":12,
-      "summary":"Owned-game operations, moderation, support, and administration foundation.",
-      "objective":"Prepare the AI to assist with games the owner controls while keeping scope explicit.",
-      "unlocked":"Owned-game operations foundation.",
-      "evidence":"Game-operations foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 12",
+      "title": "Game Operations",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 12,
+      "summary": "Owned-game operations, moderation, support, and administration foundation.",
+      "objective": "Prepare the AI to assist with games the owner controls while keeping scope explicit.",
+      "unlocked": "Owned-game operations foundation.",
+      "evidence": "Game-operations foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 13","title":"Defensive Anti-Cheat","phase":"FOUNDATION","status":"COMPLETE","sort":13,
-      "summary":"Defensive integrity and cheat-detection support for owned games; no player-cheating capability.",
-      "objective":"Detect suspicious behavior for moderation and defense without providing cheating assistance.",
-      "unlocked":"Defensive anti-cheat / integrity workflows.",
-      "evidence":"Defensive-only foundation completed.",
-      "next_action":"Complete"
+      "code": "GATE 13",
+      "title": "Defensive Anti-Cheat",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 13,
+      "summary": "Defensive integrity and cheat-detection support for owned games; no player-cheating capability.",
+      "objective": "Detect suspicious behavior for moderation and defense without providing cheating assistance.",
+      "unlocked": "Defensive anti-cheat / integrity workflows.",
+      "evidence": "Defensive-only foundation completed.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 14","title":"Agent Factory","phase":"FOUNDATION","status":"COMPLETE","sort":14,
-      "summary":"Scoped specialist/mini-agent creation with inherited protected rules and limited permissions.",
-      "objective":"Create task-specific agents without letting child agents route around governance.",
-      "unlocked":"Governed specialist-agent creation.",
-      "evidence":"Agent-factory foundation completed with inherited-rule requirements.",
-      "next_action":"Complete"
+      "code": "GATE 14",
+      "title": "Agent Factory",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 14,
+      "summary": "Scoped specialist/mini-agent creation with inherited protected rules and limited permissions.",
+      "objective": "Create task-specific agents without letting child agents route around governance.",
+      "unlocked": "Governed specialist-agent creation.",
+      "evidence": "Agent-factory foundation completed with inherited-rule requirements.",
+      "next_action": "Complete"
     },
     {
-      "code":"GATE 15","title":"External Project Integration","phase":"FOUNDATION","status":"COMPLETE","sort":15,
-      "summary":"Project isolation plus specialized external agents; THE LONG AFTER Development Agent validated through a controlled sandbox workflow.",
-      "objective":"Connect outside projects without merging their identity/data into the Personal AI or granting uncontrolled production writes.",
-      "unlocked":"Validated external-project sandbox development loop.",
-      "evidence":"TLA Development Agent Foundation, Real Workspace Binding, and Controlled TLA Sandbox Coding completed; intentional failure detection, repair + Godot retest, protected-core/regression verification, and real-project fingerprint protection passed.",
-      "next_action":"Complete — direct writes to the real THE LONG AFTER project remain disabled."
+      "code": "GATE 15",
+      "title": "External Project Integration",
+      "phase": "FOUNDATION",
+      "status": "COMPLETE",
+      "sort": 15,
+      "summary": "Project isolation plus specialized external agents; THE LONG AFTER Development Agent validated through a controlled sandbox workflow.",
+      "objective": "Connect outside projects without merging their identity/data into the Personal AI or granting uncontrolled production writes.",
+      "unlocked": "Validated external-project sandbox development loop.",
+      "evidence": "TLA Development Agent Foundation, Real Workspace Binding, and Controlled TLA Sandbox Coding completed; intentional failure detection, repair + Godot retest, protected-core/regression verification, and real-project fingerprint protection passed.",
+      "next_action": "Complete — direct writes to the real THE LONG AFTER project remain disabled."
     },
     {
-      "code":"V1-STEP-1","title":"Unified Runtime Foundation","phase":"PERSONAL AI v1","status":"COMPLETE","sort":100,
-      "summary":"Unified the validated foundations behind one runtime while intentionally keeping production self-modification and automatic promotion disabled.",
-      "objective":"Create a deterministic runtime baseline before allowing the AI to evolve itself.",
-      "unlocked":"One clean, versioned runtime foundation ready for controlled improvement.",
-      "evidence":"Deterministic targeted tests PASS; critical-resource defer behavior PASS; unified runtime self-test PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
-      "next_action":"Complete"
+      "code": "V1-STEP-1",
+      "title": "Unified Runtime Foundation",
+      "phase": "PERSONAL AI v1",
+      "status": "COMPLETE",
+      "sort": 100,
+      "summary": "Unified the validated foundations behind one runtime while intentionally keeping production self-modification and automatic promotion disabled.",
+      "objective": "Create a deterministic runtime baseline before allowing the AI to evolve itself.",
+      "unlocked": "One clean, versioned runtime foundation ready for controlled improvement.",
+      "evidence": "Deterministic targeted tests PASS; critical-resource defer behavior PASS; unified runtime self-test PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
+      "next_action": "Complete"
     },
     {
-      "code":"V1-STEP-2","title":"Self-Improvement Engine","phase":"PERSONAL AI v1","status":"COMPLETE","sort":110,
-      "summary":"Controlled self-improvement loop that evaluates candidate changes, rejects regressions, promotes better candidates, and rolls back failed promotions.",
-      "objective":"Move from sandbox self-coding to measurable self-improvement without weakening protected governance.",
-      "unlocked":"Tested candidate evaluation, promotion, rollback, and learning from self-change outcomes.",
-      "evidence":"Worse self-change rejected PASS; better self-change benchmarked/promoted PASS; failed post-promotion validation rollback PASS; learning record PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
-      "next_action":"Complete"
+      "code": "V1-STEP-2",
+      "title": "Self-Improvement Engine",
+      "phase": "PERSONAL AI v1",
+      "status": "COMPLETE",
+      "sort": 110,
+      "summary": "Controlled self-improvement loop that evaluates candidate changes, rejects regressions, promotes better candidates, and rolls back failed promotions.",
+      "objective": "Move from sandbox self-coding to measurable self-improvement without weakening protected governance.",
+      "unlocked": "Tested candidate evaluation, promotion, rollback, and learning from self-change outcomes.",
+      "evidence": "Worse self-change rejected PASS; better self-change benchmarked/promoted PASS; failed post-promotion validation rollback PASS; learning record PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
+      "next_action": "Complete"
     },
     {
-      "code":"V1-STEP-3","title":"Adaptive Hardware Optimizer","phase":"PERSONAL AI v1","status":"COMPLETE","sort":120,
-      "summary":"Hardware-aware strategy system that fingerprints the machine, observes pressure, adapts concurrency, learns from outcomes, and falls back safely across hardware differences.",
-      "objective":"Make the AI increasingly efficient on the owner's actual computer and portable across different hardware conditions.",
-      "unlocked":"Dynamic hardware-aware workload strategy and learned resource tuning.",
-      "evidence":"Stable machine fingerprint PASS; CPU/RAM/disk profile PASS; GPU/VRAM discovery/fallback PASS; dynamic pressure strategy PASS; adaptive concurrency PASS; strategy-outcome learning PASS; cross-hardware fallback PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
-      "next_action":"Complete"
+      "code": "V1-STEP-3",
+      "title": "Adaptive Hardware Optimizer",
+      "phase": "PERSONAL AI v1",
+      "status": "COMPLETE",
+      "sort": 120,
+      "summary": "Hardware-aware strategy system that fingerprints the machine, observes pressure, adapts concurrency, learns from outcomes, and falls back safely across hardware differences.",
+      "objective": "Make the AI increasingly efficient on the owner's actual computer and portable across different hardware conditions.",
+      "unlocked": "Dynamic hardware-aware workload strategy and learned resource tuning.",
+      "evidence": "Stable machine fingerprint PASS; CPU/RAM/disk profile PASS; GPU/VRAM discovery/fallback PASS; dynamic pressure strategy PASS; adaptive concurrency PASS; strategy-outcome learning PASS; cross-hardware fallback PASS; full regression PASS; protected-core verification PASS; checkpoint PASS.",
+      "next_action": "Complete"
     },
     {
-      "code":"V1-STEP-4","title":"Unified PersonalAI.exe v1","phase":"PERSONAL AI v1","status":"NEXT","sort":130,
-      "summary":"Bring the validated v1 runtime capabilities together behind the unified PersonalAI.exe v1 application surface.",
-      "objective":"Move the now-validated runtime, self-improvement, hardware adaptation, controls, and status into the next unified owner-facing application milestone.",
-      "unlocked":"Not yet unlocked — this is the active next milestone.",
-      "evidence":"Waiting on Step 4 implementation and verification.",
-      "next_action":"Begin Step 4 from the clean Step 3 checkpoint and preserve protected-core, regression, rollback, Git-cleanliness, and resource-defer requirements."
+      "code": "V1-STEP-4",
+      "title": "Unified PersonalAI.exe v1",
+      "phase": "PERSONAL AI v1",
+      "status": "NEXT",
+      "sort": 130,
+      "summary": "Bring the validated v1 runtime capabilities together behind the unified PersonalAI.exe v1 application surface.",
+      "objective": "Move the now-validated runtime, self-improvement, hardware adaptation, controls, and status into the next unified owner-facing application milestone.",
+      "unlocked": "Not yet unlocked — this is the active next milestone.",
+      "evidence": "Waiting on Step 4 implementation and verification.",
+      "next_action": "Begin Step 4 from the clean Step 3 checkpoint and preserve protected-core, regression, rollback, Git-cleanliness, and resource-defer requirements."
+    },
+    {
+      "code": "KYLO-TRUST-01",
+      "title": "Kylo Trust Core v1",
+      "phase": "TRUST / COMPLIANCE",
+      "status": "NEXT",
+      "sort": 100,
+      "summary": "Protected privacy, safety, consent, honesty, customer isolation, human authority, accountability and self-improvement boundaries.",
+      "objective": "Make trust, privacy, safety and legal-release controls architectural requirements rather than optional model instructions.",
+      "unlocked": "A protected trust layer shared by PC, Android and future iOS endpoints.",
+      "evidence": "Research baseline established from Android and Apple privacy/security guidance; implementation and automated verification are next.",
+      "next_action": "Implement Trust Core, then Data Vault."
+    },
+    {
+      "code": "KYLO-TRUST-02",
+      "title": "Data Vault & Customer Isolation",
+      "phase": "TRUST / COMPLIANCE",
+      "status": "PLANNED",
+      "sort": 101,
+      "summary": "Classify and protect conversations, memories, files, voice, images, health, location, credentials and device data.",
+      "objective": "Prevent cross-customer leakage and minimize collection, retention and exposure.",
+      "unlocked": "Encrypted, permission-bound private data handling.",
+      "evidence": "Pending implementation and adversarial isolation tests.",
+      "next_action": "Begin after Trust Core passes."
+    },
+    {
+      "code": "KYLO-MOBILE-01",
+      "title": "Android APK Foundation",
+      "phase": "MOBILE",
+      "status": "PLANNED",
+      "sort": 110,
+      "summary": "Build a real installable Android APK as an endpoint of the same Kylo identity.",
+      "objective": "Deliver Kylo on Android without creating a second independent AI.",
+      "unlocked": "Phone access to the unified Kylo system; iOS follows after Android stabilization.",
+      "evidence": "Not yet built. No unapproved third-party plugin/service will be introduced.",
+      "next_action": "Build after Trust Core/Data Vault foundation is locked."
     }
   ],
   "future_lanes": [
-    {"title":"Advanced Intelligence","summary":"Deepen planning, evaluation, memory use, and model/tool orchestration after the unified v1 application milestone."},
-    {"title":"Agent Expansion","summary":"Create richer specialist agents while preserving inherited governance and project isolation."},
-    {"title":"Research Expansion","summary":"Extend longer-horizon source-grounded research and authenticated resource workflows."},
-    {"title":"Multimodal Expansion","summary":"Deepen vision, image, video, voice, and audio workflows as replaceable modules."},
-    {"title":"PC Companion","summary":"Increase useful always-available desktop behavior while continuing to reduce idle and foreground resource cost."},
-    {"title":"External Project Operations","summary":"Add more isolated external projects using the same sandbox-first integration model."}
+    {
+      "title": "Advanced Intelligence",
+      "summary": "Deepen planning, evaluation, memory use, and model/tool orchestration after the unified v1 application milestone."
+    },
+    {
+      "title": "Agent Expansion",
+      "summary": "Create richer specialist agents while preserving inherited governance and project isolation."
+    },
+    {
+      "title": "Research Expansion",
+      "summary": "Extend longer-horizon source-grounded research and authenticated resource workflows."
+    },
+    {
+      "title": "Multimodal Expansion",
+      "summary": "Deepen vision, image, video, voice, and audio workflows as replaceable modules."
+    },
+    {
+      "title": "PC Companion",
+      "summary": "Increase useful always-available desktop behavior while continuing to reduce idle and foreground resource cost."
+    },
+    {
+      "title": "External Project Operations",
+      "summary": "Add more isolated external projects using the same sandbox-first integration model."
+    }
   ],
   "systems": [
-    {"name":"Protected Core","status":"OPERATIONAL","purpose":"Owner authority, protected rules, startup verification, stop/recovery boundaries.","verification":"PASS","boundary":"Cannot be weakened by autonomous self-improvement."},
-    {"name":"Memory / Learning","status":"OPERATIONAL","purpose":"Persistent identity, experience, skill, failure, efficiency, and project memories.","verification":"PASS","boundary":"Project memory remains isolated from global identity."},
-    {"name":"Local Model Runtime","status":"OPERATIONAL","purpose":"Local inference through Ollama / qwen3:8b.","verification":"PASS","boundary":"Model is replaceable and does not define AI identity."},
-    {"name":"Self-Coding Lab","status":"OPERATIONAL","purpose":"Generate, test, repair, and evaluate code in controlled copies.","verification":"PASS","boundary":"Protected core and real external projects remain outside unrestricted write scope."},
-    {"name":"Self-Improvement Engine","status":"OPERATIONAL","purpose":"Evaluate candidates, reject worse changes, promote better ones, and roll back failures.","verification":"PASS","boundary":"Promotion requires deterministic safeguards and rollback."},
-    {"name":"Adaptive Hardware Optimizer","status":"OPERATIONAL","purpose":"Adapt workload strategy to hardware identity and current pressure.","verification":"PASS","boundary":"Yields to owner-priority workloads and cross-hardware fallback rules."},
-    {"name":"Resource Governor","status":"OPERATIONAL","purpose":"Admit, defer, or reduce workloads based on CPU/GPU/RAM/VRAM/power pressure.","verification":"PASS","boundary":"Gaming/foreground workloads receive priority."},
-    {"name":"Checkpoints / Recovery","status":"OPERATIONAL","purpose":"Create known-good recovery points around significant changes.","verification":"PASS","boundary":"Failed improvement must be recoverable."}
+    {
+      "name": "Protected Core",
+      "status": "OPERATIONAL",
+      "purpose": "Owner authority, protected rules, startup verification, stop/recovery boundaries.",
+      "verification": "PASS",
+      "boundary": "Cannot be weakened by autonomous self-improvement."
+    },
+    {
+      "name": "Memory / Learning",
+      "status": "OPERATIONAL",
+      "purpose": "Persistent identity, experience, skill, failure, efficiency, and project memories.",
+      "verification": "PASS",
+      "boundary": "Project memory remains isolated from global identity."
+    },
+    {
+      "name": "Local Model Runtime",
+      "status": "OPERATIONAL",
+      "purpose": "Local inference through Ollama / qwen3:8b.",
+      "verification": "PASS",
+      "boundary": "Model is replaceable and does not define AI identity."
+    },
+    {
+      "name": "Self-Coding Lab",
+      "status": "OPERATIONAL",
+      "purpose": "Generate, test, repair, and evaluate code in controlled copies.",
+      "verification": "PASS",
+      "boundary": "Protected core and real external projects remain outside unrestricted write scope."
+    },
+    {
+      "name": "Self-Improvement Engine",
+      "status": "OPERATIONAL",
+      "purpose": "Evaluate candidates, reject worse changes, promote better ones, and roll back failures.",
+      "verification": "PASS",
+      "boundary": "Promotion requires deterministic safeguards and rollback."
+    },
+    {
+      "name": "Adaptive Hardware Optimizer",
+      "status": "OPERATIONAL",
+      "purpose": "Adapt workload strategy to hardware identity and current pressure.",
+      "verification": "PASS",
+      "boundary": "Yields to owner-priority workloads and cross-hardware fallback rules."
+    },
+    {
+      "name": "Resource Governor",
+      "status": "OPERATIONAL",
+      "purpose": "Admit, defer, or reduce workloads based on CPU/GPU/RAM/VRAM/power pressure.",
+      "verification": "PASS",
+      "boundary": "Gaming/foreground workloads receive priority."
+    },
+    {
+      "name": "Checkpoints / Recovery",
+      "status": "OPERATIONAL",
+      "purpose": "Create known-good recovery points around significant changes.",
+      "verification": "PASS",
+      "boundary": "Failed improvement must be recoverable."
+    },
+    {
+      "name": "Kylo Trust Core",
+      "status": "ACTIVE",
+      "purpose": "Enforce loyalty, honesty, trust, privacy, safety, consent, transparency, human authority, accountability and protected self-improvement.",
+      "verification": "IMPLEMENTATION NEXT",
+      "boundary": "Cannot be silently weakened by self-improvement or endpoint code."
+    },
+    {
+      "name": "Customer Privacy Boundary",
+      "status": "REQUIRED",
+      "purpose": "Keep each customer's conversations, memories, files, credentials, device and sensitive data isolated.",
+      "verification": "TESTS PLANNED",
+      "boundary": "No cross-customer memory, training, logging or data access by default."
+    },
+    {
+      "name": "Compliance Manifest",
+      "status": "PLANNED",
+      "purpose": "Track jurisdictions, permissions, data classes, retention, dependencies, disclosures, tests and unresolved release requirements.",
+      "verification": "RELEASE GATE",
+      "boundary": "No claim of universal legal compliance; each release/jurisdiction must be reviewed."
+    }
   ],
   "agents": [
-    {"name":"Coding Agent","status":"FACTORY-READY","scope":"Scoped implementation and repair tasks."},
-    {"name":"Research Agent","status":"FACTORY-READY","scope":"Source-grounded research and synthesis."},
-    {"name":"Test / Verification Agent","status":"FACTORY-READY","scope":"Deterministic tests, regression, validation, failure reporting."},
-    {"name":"Optimization Agent","status":"FACTORY-READY","scope":"Performance and efficiency analysis."},
-    {"name":"Documentation Agent","status":"FACTORY-READY","scope":"Technical records, checkpoints, handoffs, and provenance."},
-    {"name":"Vision Agent","status":"FACTORY-READY","scope":"Image/screen understanding."},
-    {"name":"Image Agent","status":"FACTORY-READY","scope":"Image generation/editing workflows."},
-    {"name":"Video Agent","status":"FACTORY-READY","scope":"Video generation/editing workflows."},
-    {"name":"Windows / Computer Agent","status":"FACTORY-READY","scope":"Authorized PC interaction."},
-    {"name":"Discord Agent","status":"FOUNDATION READY","scope":"Bounded Discord operations."},
-    {"name":"Game Operations Agent","status":"FOUNDATION READY","scope":"Owned-game moderation/operations."},
-    {"name":"Security / Anti-Cheat Defense Agent","status":"FOUNDATION READY","scope":"Defensive integrity and cheat detection only."},
-    {"name":"THE LONG AFTER Development Agent","status":"VALIDATED","scope":"Sandbox development integration; real-project direct writes disabled."}
+    {
+      "name": "Coding Agent",
+      "status": "FACTORY-READY",
+      "scope": "Scoped implementation and repair tasks."
+    },
+    {
+      "name": "Research Agent",
+      "status": "FACTORY-READY",
+      "scope": "Source-grounded research and synthesis."
+    },
+    {
+      "name": "Test / Verification Agent",
+      "status": "FACTORY-READY",
+      "scope": "Deterministic tests, regression, validation, failure reporting."
+    },
+    {
+      "name": "Optimization Agent",
+      "status": "FACTORY-READY",
+      "scope": "Performance and efficiency analysis."
+    },
+    {
+      "name": "Documentation Agent",
+      "status": "FACTORY-READY",
+      "scope": "Technical records, checkpoints, handoffs, and provenance."
+    },
+    {
+      "name": "Vision Agent",
+      "status": "FACTORY-READY",
+      "scope": "Image/screen understanding."
+    },
+    {
+      "name": "Image Agent",
+      "status": "FACTORY-READY",
+      "scope": "Image generation/editing workflows."
+    },
+    {
+      "name": "Video Agent",
+      "status": "FACTORY-READY",
+      "scope": "Video generation/editing workflows."
+    },
+    {
+      "name": "Windows / Computer Agent",
+      "status": "FACTORY-READY",
+      "scope": "Authorized PC interaction."
+    },
+    {
+      "name": "Discord Agent",
+      "status": "FOUNDATION READY",
+      "scope": "Bounded Discord operations."
+    },
+    {
+      "name": "Game Operations Agent",
+      "status": "FOUNDATION READY",
+      "scope": "Owned-game moderation/operations."
+    },
+    {
+      "name": "Security / Anti-Cheat Defense Agent",
+      "status": "FOUNDATION READY",
+      "scope": "Defensive integrity and cheat detection only."
+    },
+    {
+      "name": "THE LONG AFTER Development Agent",
+      "status": "VALIDATED",
+      "scope": "Sandbox development integration; real-project direct writes disabled."
+    }
   ],
   "integrations": [
-    {"name":"Ollama / qwen3:8b","status":"CONNECTED","detail":"Current local model runtime; replaceable component."},
-    {"name":"Windows PC Runtime","status":"CONNECTED","detail":"Local-first execution with adaptive resource management."},
-    {"name":"Git / Checkpoints","status":"CONNECTED","detail":"Versioning, clean-state checks, checkpoints, rollback, and provenance."},
-    {"name":"Discord","status":"FOUNDATION READY","detail":"Bounded integration with explicit permissions."},
-    {"name":"THE LONG AFTER","status":"VALIDATED","detail":"Sandbox integration validated; real project source protected; direct real-project writes disabled."},
-    {"name":"GitHub Command Center","status":"BUILDING","detail":"Public read-only roadmap and status observatory driven by this repository."}
+    {
+      "name": "Ollama / qwen3:8b",
+      "status": "CONNECTED",
+      "detail": "Current local model runtime; replaceable component."
+    },
+    {
+      "name": "Windows PC Runtime",
+      "status": "CONNECTED",
+      "detail": "Local-first execution with adaptive resource management."
+    },
+    {
+      "name": "Git / Checkpoints",
+      "status": "CONNECTED",
+      "detail": "Versioning, clean-state checks, checkpoints, rollback, and provenance."
+    },
+    {
+      "name": "Discord",
+      "status": "FOUNDATION READY",
+      "detail": "Bounded integration with explicit permissions."
+    },
+    {
+      "name": "THE LONG AFTER",
+      "status": "VALIDATED",
+      "detail": "Sandbox integration validated; real project source protected; direct real-project writes disabled."
+    },
+    {
+      "name": "GitHub Command Center",
+      "status": "BUILDING",
+      "detail": "Public read-only roadmap and status observatory driven by this repository."
+    },
+    {
+      "name": "Kylo Mobile / Android",
+      "status": "PLANNED",
+      "detail": "Real APK endpoint for the same Kylo identity; PC remains heavy-compute/home node."
+    },
+    {
+      "name": "Kylo Mobile / iOS",
+      "status": "FUTURE",
+      "detail": "Planned after Android stabilization, sharing the same identity, protocol, memory and Trust Core."
+    }
   ],
   "activity": [
-    {"time":"2026-09-21T03:43:00-05:00","type":"MILESTONE","status":"COMPLETE","title":"PERSONAL AI v1 Step 3 — Adaptive Hardware Optimizer complete","detail":"Hardware fingerprinting, pressure strategy, adaptive concurrency, learning, fallback, regression, protected core, and checkpoint passed."},
-    {"time":"2026-09-21T02:45:00-05:00","type":"MILESTONE","status":"COMPLETE","title":"PERSONAL AI v1 Step 2 — Self-Improvement Engine complete","detail":"Worse candidate rejection, better candidate promotion, rollback proof, learning record, regression, protected core, and checkpoint passed."},
-    {"time":"2026-09-21T01:55:00-05:00","type":"MILESTONE","status":"COMPLETE","title":"PERSONAL AI v1 Step 1 — Unified Runtime Foundation complete","detail":"Deterministic targeted tests, resource defer, runtime self-test, full regression, protected core, and checkpoint passed."},
-    {"time":"2026-09-20T23:40:00-05:00","type":"MILESTONE","status":"COMPLETE","title":"Gate 15 — External Project Integration complete","detail":"THE LONG AFTER Development Agent validated through controlled sandbox coding and real-project protection checks."},
-    {"time":"2026-09-20T23:35:00-05:00","type":"SAFETY","status":"PASS","title":"THE LONG AFTER real-project protection verified","detail":"Real project fingerprint remained unchanged; direct writes remain disabled."},
-    {"time":"2026-09-21T03:45:00-05:00","type":"STATUS","status":"NEXT","title":"V1 Step 4 established as next milestone","detail":"Unified PersonalAI.exe v1 is the next confirmed build step."}
+    {
+      "time": "2026-09-21T22:30:00-05:00",
+      "type": "ARCHITECTURE",
+      "status": "NEXT",
+      "title": "Kylo Trust Core v1 activated",
+      "detail": "Privacy, safety, consent, customer isolation, legal/release compliance and protected self-improvement moved ahead of public mobile release."
+    },
+    {
+      "time": "2026-09-21T22:29:00-05:00",
+      "type": "MOBILE",
+      "status": "PLANNED",
+      "title": "Android APK first; iOS follows",
+      "detail": "Mobile is an endpoint of one Kylo identity, not a second AI. Android receives the first installable app; iOS is planned after stabilization."
+    },
+    {
+      "time": "2026-09-21T22:28:00-05:00",
+      "type": "POLICY",
+      "status": "PASS",
+      "title": "Owner-only plugin approval gate locked",
+      "detail": "No new plugin, connector, SDK, cloud service, analytics, authentication provider, remote-access provider or third-party capability may be introduced without explicit owner approval."
+    },
+    {
+      "time": "2026-09-21T03:43:00-05:00",
+      "type": "MILESTONE",
+      "status": "COMPLETE",
+      "title": "PERSONAL AI v1 Step 3 — Adaptive Hardware Optimizer complete",
+      "detail": "Hardware fingerprinting, pressure strategy, adaptive concurrency, learning, fallback, regression, protected core, and checkpoint passed."
+    },
+    {
+      "time": "2026-09-21T02:45:00-05:00",
+      "type": "MILESTONE",
+      "status": "COMPLETE",
+      "title": "PERSONAL AI v1 Step 2 — Self-Improvement Engine complete",
+      "detail": "Worse candidate rejection, better candidate promotion, rollback proof, learning record, regression, protected core, and checkpoint passed."
+    },
+    {
+      "time": "2026-09-21T01:55:00-05:00",
+      "type": "MILESTONE",
+      "status": "COMPLETE",
+      "title": "PERSONAL AI v1 Step 1 — Unified Runtime Foundation complete",
+      "detail": "Deterministic targeted tests, resource defer, runtime self-test, full regression, protected core, and checkpoint passed."
+    },
+    {
+      "time": "2026-09-20T23:40:00-05:00",
+      "type": "MILESTONE",
+      "status": "COMPLETE",
+      "title": "Gate 15 — External Project Integration complete",
+      "detail": "THE LONG AFTER Development Agent validated through controlled sandbox coding and real-project protection checks."
+    },
+    {
+      "time": "2026-09-20T23:35:00-05:00",
+      "type": "SAFETY",
+      "status": "PASS",
+      "title": "THE LONG AFTER real-project protection verified",
+      "detail": "Real project fingerprint remained unchanged; direct writes remain disabled."
+    },
+    {
+      "time": "2026-09-21T03:45:00-05:00",
+      "type": "STATUS",
+      "status": "NEXT",
+      "title": "V1 Step 4 established as next milestone",
+      "detail": "Unified PersonalAI.exe v1 is the next confirmed build step."
+    }
   ]
 }
