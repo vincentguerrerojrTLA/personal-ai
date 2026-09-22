@@ -1,10 +1,10 @@
 name: Kylow Android
 on:
   push:
-    branches: [ main, kylow-android-rush ]
+    branches: [ main ]
     paths: [ 'android/**', '.github/workflows/kylow-android.yml' ]
   pull_request:
-    paths: [ 'android/**' ]
+    paths: [ 'android/**', '.github/workflows/kylow-android.yml' ]
 jobs:
   test-build:
     runs-on: ubuntu-latest
@@ -20,8 +20,26 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - run: gradle testDebugUnitTest assembleDebug
+      - name: Unit tests
+        run: gradle testDebugUnitTest
+      - name: Restore Kylow signing key
+        if: github.event_name != 'pull_request'
+        env:
+          KYLOW_KEYSTORE_BASE64: ${{ secrets.KYLOW_KEYSTORE_BASE64 }}
+        run: echo "$KYLOW_KEYSTORE_BASE64" | base64 --decode > kylow-release.jks
+      - name: Build permanently signed release
+        if: github.event_name != 'pull_request'
+        env:
+          KYLOW_KEYSTORE_PATH: kylow-release.jks
+          KYLOW_KEYSTORE_PASSWORD: ${{ secrets.KYLOW_KEYSTORE_PASSWORD }}
+          KYLOW_KEY_ALIAS: ${{ secrets.KYLOW_KEY_ALIAS }}
+          KYLOW_KEY_PASSWORD: ${{ secrets.KYLOW_KEY_PASSWORD }}
+        run: gradle assembleRelease
+      - name: Remove signing key
+        if: always()
+        run: rm -f kylow-release.jks
       - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
         with:
-          name: Kylow-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: Kylow-signed-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
