@@ -6,30 +6,25 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.UUID
 
 class MainActivity:AppCompatActivity(){
- private val transcript=StringBuilder()
+ private lateinit var store:ChatStore; private var current:String?=null; private val transcript=StringBuilder()
  override fun onCreate(s:Bundle?){super.onCreate(s);setContentView(R.layout.activity_main)
-  val root=findViewById<View>(R.id.rootLayout);ViewCompat.setOnApplyWindowInsetsListener(root){v,i->val b=i.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime());v.setPadding(b.left,b.top,b.right,b.bottom);i};
-  val input=findViewById<EditText>(R.id.messageInput);val chat=findViewById<TextView>(R.id.chatText);val welcome=findViewById<View>(R.id.welcomePanel);val tools=findViewById<View>(R.id.toolBar);val scroll=findViewById<ScrollView>(R.id.chatScroll)
-  fun append(who:String,text:String){welcome.visibility=View.GONE;if(transcript.isNotEmpty())transcript.append("\n\n");transcript.append(who).append("\n").append(text);chat.text=transcript.toString();scroll.post{scroll.fullScroll(View.FOCUS_DOWN)}}
+  val root=findViewById<View>(R.id.rootLayout);ViewCompat.setOnApplyWindowInsetsListener(root){v,i->val b=i.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime());v.setPadding(b.left,b.top,b.right,b.bottom);i}
+  store=ChatStore(this);val input=findViewById<EditText>(R.id.messageInput);val chat=findViewById<TextView>(R.id.chatText);val welcome=findViewById<View>(R.id.welcomePanel);val tools=findViewById<View>(R.id.toolBar);val scroll=findViewById<ScrollView>(R.id.chatScroll)
+  fun render(){chat.text=transcript.toString();welcome.visibility=if(transcript.isEmpty())View.VISIBLE else View.GONE;scroll.post{scroll.fullScroll(View.FOCUS_DOWN)}}
+  fun persist(){if(transcript.isEmpty())return;val id=current?:UUID.randomUUID().toString().also{current=it};store.save(id,transcript.toString())}
+  fun append(who:String,text:String){if(transcript.isNotEmpty())transcript.append("\n\n");transcript.append(who).append("\n").append(text);persist();render()}
   fun send(){val q=input.text.toString().trim();if(q.isEmpty())return;append("You",q);input.text.clear();append("Kylow",localReply(q))}
-  findViewById<Button>(R.id.sendButton).setOnClickListener{send()}
-  input.setOnEditorActionListener{_,id,_->if(id==EditorInfo.IME_ACTION_SEND){send();true}else false}
-  findViewById<Button>(R.id.toolsButton).setOnClickListener{tools.visibility=if(tools.visibility==View.VISIBLE)View.GONE else View.VISIBLE}
-  findViewById<Button>(R.id.menuButton).setOnClickListener{tools.visibility=if(tools.visibility==View.VISIBLE)View.GONE else View.VISIBLE}
-  findViewById<Button>(R.id.newChatButton).setOnClickListener{transcript.clear();chat.text="";welcome.visibility=View.VISIBLE;input.text.clear()}
-  findViewById<Button>(R.id.filesButton).setOnClickListener{append("Kylow","Files are a local phone capability and do not require a PC connection.")}
-  findViewById<Button>(R.id.webButton).setOnClickListener{append("Kylow","Web access is an optional phone capability. Core chat must remain usable without a PC.")}
-  findViewById<Button>(R.id.tasksButton).setOnClickListener{append("Kylow","Tasks belong to this Kylow app and are not dependent on a PC connection.")}
+  findViewById<TextView>(R.id.sendButton).setOnClickListener{send()};input.setOnEditorActionListener{_,id,_->if(id==EditorInfo.IME_ACTION_SEND){send();true}else false}
+  findViewById<TextView>(R.id.toolsButton).setOnClickListener{tools.visibility=if(tools.visibility==View.VISIBLE)View.GONE else View.VISIBLE}
+  findViewById<TextView>(R.id.menuButton).setOnClickListener{val items=store.list();val labels=mutableListOf("New chat","Files & Library","Plugins","Settings");items.take(20).forEach{labels.add((if(it.pinned)"★ " else "")+it.title)};android.app.AlertDialog.Builder(this).setTitle("Kylow").setItems(labels.toTypedArray()){_,p->when{p==0->{persist();current=null;transcript.clear();render()};p==1->append("Kylow","Library is ready for local files and future connected storage.");p==2->append("Kylow","Plugins are optional extensions. Kylow remains usable without them.");p==3->append("Kylow","Settings will manage privacy, memory, devices and plugins.");else->{val c=items[p-4];current=c.id;transcript.clear();transcript.append(c.body);render()}}}.show()}
+  findViewById<TextView>(R.id.newChatButton).setOnClickListener{persist();current=null;transcript.clear();chat.text="";welcome.visibility=View.VISIBLE;input.text.clear()}
+  findViewById<Button>(R.id.filesButton).setOnClickListener{append("Kylow","Local Library is enabled. File importing and plugin-backed storage are the next integration layer.")}
+  findViewById<Button>(R.id.webButton).setOnClickListener{append("Kylow","Web is an optional tool; core Kylow remains independent.")}
+  findViewById<Button>(R.id.tasksButton).setOnClickListener{append("Kylow","Tasks are part of Kylow and persist independently of a PC.")}
+  store.latest()?.let{current=it.id;transcript.append(it.body);render()}
  }
- private fun localReply(q:String):String{
-  val t=q.lowercase()
-  return when{
-   t.matches(Regex(".*\\b(hi|hello|hey)\\b.*"))->"Hey! I’m Kylow. I’m running directly in the phone app."
-   "who are you" in t->"I’m Kylow — your personal AI. The phone app is a first-class Kylow client, not a remote control for your PC."
-   "pc" in t||"computer" in t->"I can optionally work with your PC when you choose, but this app is being built so the PC is not required for normal use."
-   else->"I received that locally. The text-first chat interface is working; the next build stage replaces this lightweight local responder with Kylow’s independent on-device AI runtime."
-  }
- }
+ private fun localReply(q:String)=when{q.lowercase().matches(Regex(".*\\b(hi|hello|hey)\\b.*"))->"Hey! I’m Kylow. I’m running directly on this phone.";else->"I received that locally. Persistent chat storage is active; the independent model runtime is the next major engine layer."}
 }
