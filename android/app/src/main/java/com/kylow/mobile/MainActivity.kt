@@ -1,5 +1,6 @@
 package com.kylow.mobile
 import android.os.Bundle
+import android.content.Intent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.*
@@ -29,7 +30,7 @@ class MainActivity:AppCompatActivity(){
   findViewById<Button>(R.id.tasksHomeButton).setOnClickListener{append("Kylow","Tasks are ready for the next functional integration layer.")}
   findViewById<Button>(R.id.filesHomeButton).setOnClickListener{append("Kylow","Local Library is ready for file integration.")}
   findViewById<Button>(R.id.webHomeButton).setOnClickListener{append("Kylow","Web Search will remain optional; core Kylow stays independent.")}
-  findViewById<Button>(R.id.pcHomeButton).setOnClickListener{append("Kylow","PC pairing is optional. This phone remains a first-class Kylow device.")}
+  findViewById<Button>(R.id.pcHomeButton).setOnClickListener{startActivity(Intent(this,if(RemotePcConfig.paired(this)) RemotePcActivity::class.java else RemotePcPairActivity::class.java))}
   findViewById<Button>(R.id.createHomeButton).setOnClickListener{prompt("Create ")}
   findViewById<Button>(R.id.learnHomeButton).setOnClickListener{prompt("Teach me about ")}
   findViewById<Button>(R.id.moreHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
