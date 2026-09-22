@@ -9,6 +9,27 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23030712'/%3E%3Cpath d='M14 32h36M32 14v36' stroke='%2359d9ff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%232b7cff' stroke-width='2'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./assets/styles.css" />
   <link rel="stylesheet" href="./assets/gauges.css" />
+  <style>
+    .kylow-platform-progress{margin:30px 0 8px;border:1px solid var(--line2);background:linear-gradient(140deg,rgba(7,18,34,.92),rgba(4,12,24,.78));box-shadow:var(--shadow);overflow:hidden}
+    .kylow-progress-head{display:flex;align-items:end;justify-content:space-between;gap:18px;padding:22px 24px;border-bottom:1px solid var(--line)}
+    .kylow-progress-head h2{margin:8px 0 0;font-size:clamp(24px,3vw,42px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase}
+    .kylow-progress-head p{margin:0;max-width:540px;text-align:right;color:var(--muted);font-size:12px;line-height:1.55}
+    .kylow-progress-grid{display:grid;grid-template-columns:1fr 1fr}
+    .kylow-progress-card{padding:26px 24px 24px;position:relative;min-height:230px}
+    .kylow-progress-card+ .kylow-progress-card{border-left:1px solid var(--line)}
+    .kylow-platform-label{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#dbe9f8;font:800 10px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase}
+    .kylow-platform-label span:last-child{color:var(--cyan)}
+    .kylow-percent-row{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:19px 0 17px}
+    .kylow-percent{font:900 clamp(54px,7vw,86px)/.82 var(--sans);letter-spacing:-.06em;color:white}
+    .kylow-percent small{font-size:.28em;color:var(--cyan);letter-spacing:0;margin-left:4px}
+    .kylow-state{color:var(--muted);font:800 9px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-align:right}
+    .kylow-track{height:10px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+    .kylow-track i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));box-shadow:0 0 20px rgba(89,217,255,.42)}
+    .kylow-progress-meta{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:#8ca4bd;font:700 9px/1.35 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+    .kylow-progress-meta b{color:#dcecff;font-weight:800}
+    .kylow-progress-foot{padding:12px 24px;border-top:1px solid var(--line);color:#718aa4;font:700 9px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase}
+    @media(max-width:760px){.kylow-progress-head{align-items:flex-start;flex-direction:column}.kylow-progress-head p{text-align:left}.kylow-progress-grid{grid-template-columns:1fr}.kylow-progress-card+ .kylow-progress-card{border-left:0;border-top:1px solid var(--line)}.kylow-progress-card{min-height:205px}.kylow-percent{font-size:64px}}
+  </style>
 </head>
 <body>
 <div class="app">
@@ -46,6 +67,28 @@
           <div class="status-grid" id="statusGrid"></div>
         </aside>
       </div>
+
+      <section class="kylow-platform-progress" aria-labelledby="kylowPlatformTitle">
+        <div class="kylow-progress-head">
+          <div><div class="eyebrow">Kylow Platform Build</div><h2 id="kylowPlatformTitle">Desktop + Mobile Progress</h2></div>
+          <p>Side-by-side verified completion toward a usable Kylow release on each platform. Percentages only advance when build work is completed and confirmed.</p>
+        </div>
+        <div class="kylow-progress-grid">
+          <article class="kylow-progress-card">
+            <div class="kylow-platform-label"><span>Desktop Kylow</span><span>Windows / EXE</span></div>
+            <div class="kylow-percent-row"><div class="kylow-percent">40<small>%</small></div><div class="kylow-state">Active build<br>4 / 10 major phases complete</div></div>
+            <div class="kylow-track" aria-label="Desktop Kylow 40 percent complete"><i style="width:40%"></i></div>
+            <div class="kylow-progress-meta"><span><b>Current:</b> Unified Kylow EXE</span><span><b>Next:</b> Verified EXE work</span></div>
+          </article>
+          <article class="kylow-progress-card">
+            <div class="kylow-platform-label"><span>Mobile Kylow</span><span>Android / APK</span></div>
+            <div class="kylow-percent-row"><div class="kylow-percent">0<small>%</small></div><div class="kylow-state">Planned build<br>No verified mobile phase closed yet</div></div>
+            <div class="kylow-track" aria-label="Mobile Kylow 0 percent complete"><i style="width:0%"></i></div>
+            <div class="kylow-progress-meta"><span><b>Current:</b> Pre-build planning</span><span><b>Target:</b> Standalone APK</span></div>
+          </article>
+        </div>
+        <div class="kylow-progress-foot">Completion is evidence-based: planning alone does not increase the build percentage.</div>
+      </section>
 
       <div class="home-gauge-shell" id="homeGaugeShell">
         <div class="progress-gauge-panel">
