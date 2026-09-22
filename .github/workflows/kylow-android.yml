@@ -27,6 +27,11 @@ jobs:
         env:
           KYLOW_KEYSTORE_BASE64: ${{ secrets.KYLOW_KEYSTORE_BASE64 }}
         run: echo "$KYLOW_KEYSTORE_BASE64" | base64 --decode > kylow-release.jks
+      - name: Verify restored signing key copy
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "keystore_bytes=$(wc -c < kylow-release.jks)"
+          echo "keystore_sha256=$(sha256sum kylow-release.jks | cut -d\' \' -f1)"
       - name: Build permanently signed release
         if: github.event_name != 'pull_request'
         env:
