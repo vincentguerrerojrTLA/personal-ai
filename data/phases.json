@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-09-21T04:22:00-05:00",
-  "current_phase": "PHASE-04",
+  "updated_at": "2026-09-21T22:30:00-05:00",
+  "current_phase": "PHASE-10",
   "phases": [
     {
       "code": "PHASE-00",
@@ -222,6 +222,37 @@
       "verification": "Future phase. Project-specific acceptance gates will be created as integrations are added.",
       "unlocks": "A Personal AI platform that can safely operate across multiple owner projects.",
       "next": "Further phases will be defined from verified results rather than guessed in advance."
+    },
+    {
+      "code": "PHASE-10",
+      "number": "10",
+      "title": "Kylo Trust, Privacy & Mobile Foundation",
+      "status": "NEXT",
+      "range": "Kylo Trust Core → Data Vault → Android APK",
+      "progress": 5,
+      "summary": "Harden Kylo for private, safe, legally reviewable cross-device use before public mobile distribution.",
+      "detail": "This phase establishes protected trust rules, customer isolation, data classification, minimum permissions, device identity, safe action authority, health/safety handling, audit/incident controls, a machine-readable compliance manifest, automated release gates, and then the first real Android APK. iOS follows after Android stabilization.",
+      "completed": [
+        "Cross-platform One Kylo rule established",
+        "Owner-only plugin approval gate established",
+        "Initial Android/Apple privacy and security research completed"
+      ],
+      "targets": [
+        "Kylo Trust Core v1",
+        "Encrypted Data Vault and strict customer isolation",
+        "Permission and consent engine",
+        "Owner/device identity and revocation",
+        "Health and safety response layer",
+        "Action authority state machine",
+        "Secure phone↔PC gateway architecture",
+        "Privacy-safe audit and incident controls",
+        "Compliance Manifest and automated release gates",
+        "Signed Android APK",
+        "iOS preparation after Android stabilization"
+      ],
+      "verification": "Phase closes only after implementation tests, privacy/isolation tests, permission tests, security checks, release-compliance review and owner validation.",
+      "unlocks": "A privacy-first Android Kylo endpoint built on the same protected architecture intended for future public and iOS distribution.",
+      "next": "Android stabilization → iOS build"
     }
   ]
 }
