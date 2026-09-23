@@ -10,10 +10,10 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.UUID
 
 class MainActivity:AppCompatActivity(){
- private lateinit var store:ChatStore; private var current:String?=null; private val transcript=StringBuilder(); private val ai:LocalAiRuntime=NoModelRuntime()
+ private lateinit var store:ChatStore; private var current:String?=null; private val transcript=StringBuilder(); private lateinit var ai:LocalAiRuntime
  override fun onCreate(s:Bundle?){super.onCreate(s);setContentView(R.layout.activity_main)
   val root=findViewById<View>(R.id.rootLayout);ViewCompat.setOnApplyWindowInsetsListener(root){v,i->val b=i.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime());v.setPadding(b.left,b.top,b.right,b.bottom);i}
-  store=ChatStore(this);val input=findViewById<EditText>(R.id.messageInput);val chat=findViewById<TextView>(R.id.chatText);val welcome=findViewById<View>(R.id.welcomePanel);val tools=findViewById<View>(R.id.toolBar);val scroll=findViewById<ScrollView>(R.id.chatScroll)
+  store=ChatStore(this);ai=NativeLocalAiRuntime(LocalModelManager(this));val input=findViewById<EditText>(R.id.messageInput);val chat=findViewById<TextView>(R.id.chatText);val welcome=findViewById<View>(R.id.welcomePanel);val tools=findViewById<View>(R.id.toolBar);val scroll=findViewById<ScrollView>(R.id.chatScroll)
   fun render(){chat.text=transcript.toString();welcome.visibility=if(transcript.isEmpty())View.VISIBLE else View.GONE;scroll.post{scroll.fullScroll(View.FOCUS_DOWN)}}
   fun persist(){if(transcript.isEmpty())return;val id=current?:UUID.randomUUID().toString().also{current=it};store.save(id,transcript.toString())}
   fun append(who:String,text:String){if(transcript.isNotEmpty())transcript.append("\n\n");transcript.append(who).append("\n").append(text);persist();render()}
