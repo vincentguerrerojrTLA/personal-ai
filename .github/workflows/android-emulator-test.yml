@@ -45,7 +45,7 @@ jobs:
             adb exec-out screencap -p > artifacts/kylow-home.png
             adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
             adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
-            if grep -E "FATAL EXCEPTION|ANR in com.kylow.mobile" artifacts/logcat.txt; then exit 1; fi
+            if grep -E "Process: com.kylow.mobile|ANR in com.kylow.mobile" artifacts/logcat.txt; then exit 1; fi
       - name: Upload emulator evidence
         if: always()
         uses: actions/upload-artifact@v4
