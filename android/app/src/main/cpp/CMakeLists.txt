@@ -1,9 +1,22 @@
 cmake_minimum_required(VERSION 3.22.1)
 project(kylow_inference LANGUAGES C CXX)
 
-add_library(kylow_inference SHARED kylow_inference.cpp)
+option(KYLOW_ENABLE_LLAMA "Build Kylow with the pinned llama.cpp backend" OFF)
 
+add_library(kylow_inference SHARED kylow_inference.cpp)
 find_library(log-lib log)
 target_compile_features(kylow_inference PRIVATE cxx_std_17)
 target_compile_options(kylow_inference PRIVATE -Wall -Wextra -Werror)
 target_link_libraries(kylow_inference ${log-lib})
+
+if(KYLOW_ENABLE_LLAMA)
+    include(llama_backend/PINNED_BACKEND.cmake)
+    if(NOT DEFINED KYLOW_LLAMA_CPP_DIR)
+        message(FATAL_ERROR "KYLOW_LLAMA_CPP_DIR must point to llama.cpp ${KYLOW_LLAMA_CPP_TAG} (${KYLOW_LLAMA_CPP_COMMIT})")
+    endif()
+    add_subdirectory(llama_backend)
+    target_link_libraries(kylow_inference llama)
+    target_compile_definitions(kylow_inference PRIVATE KYLOW_HAS_LLAMA=1)
+else()
+    message(STATUS "Kylow: compiling fail-closed native bridge without llama.cpp backend")
+endif()
