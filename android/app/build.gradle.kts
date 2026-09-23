@@ -1,7 +1,7 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
 android {
  namespace="com.kylow.mobile"; compileSdk=35
- defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=12; versionName="0.9.1" }
+ defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=12; versionName="0.9.1"; externalNativeBuild { cmake { cppFlags += "-std=c++17" } } }
  signingConfigs {
   create("release") {
    storeFile=file(System.getenv("KYLOW_KEYSTORE_PATH") ?: "kylow-release.jks")
@@ -11,6 +11,7 @@ android {
   }
  }
  buildTypes { getByName("release") { isMinifyEnabled=false; signingConfig=signingConfigs.getByName("release") } }
+ externalNativeBuild { cmake { path=file("src/main/cpp/CMakeLists.txt"); version="3.22.1" } }
  compileOptions { sourceCompatibility=JavaVersion.VERSION_17; targetCompatibility=JavaVersion.VERSION_17 }
 }
 kotlin { jvmToolchain(17) }
