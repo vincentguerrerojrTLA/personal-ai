@@ -40,10 +40,10 @@ jobs:
             adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
             sleep 5
             adb shell dumpsys window | grep -q com.kylow.mobile
-            adb shell uiautomator dump /sdcard/kylow-ui.xml
-            adb pull /sdcard/kylow-ui.xml artifacts/kylow-ui.xml
             adb exec-out screencap -p > artifacts/kylow-home.png
             adb logcat -d > artifacts/logcat.txt
+            adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
+            adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
             if grep -E "FATAL EXCEPTION|ANR in com.kylow.mobile" artifacts/logcat.txt; then exit 1; fi
       - name: Upload emulator evidence
         if: always()
