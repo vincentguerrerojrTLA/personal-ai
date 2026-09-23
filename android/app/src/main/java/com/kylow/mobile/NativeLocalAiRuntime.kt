@@ -23,8 +23,7 @@ class NativeLocalAiRuntime(
                 model == null -> RuntimeState.Unavailable
                 !InferenceBackendPolicy.supports(manifest) ->
                     RuntimeState.Error("Installed model is not approved for Kylow's inference backend.")
-                model.sizeBytes != manifest.sizeBytes ||
-                    !model.sha256.equals(manifest.sha256, ignoreCase = true) ->
+                !model.sha256.equals(manifest.sha256, ignoreCase = true) ->
                     RuntimeState.Error("Installed model failed integrity verification.")
                 !NativeInferenceBridge.available -> RuntimeState.Error("Native inference engine is not packaged.")
                 else -> runCatching {
@@ -66,7 +65,7 @@ class NativeLocalAiRuntime(
             id = "qwen3-0.6b-q4-k-m",
             displayName = "Qwen3-0.6B-Q4_K_M",
             sha256 = "b0638f08417a2d3c8652760462eb5407c6e30173cf9608ad0820757a281eea0e",
-            sizeBytes = 397_000_000L,
+            sizeBytes = 397_000_000L, // informational until upstream exposes an exact byte count; SHA-256 is authoritative
             license = "Apache-2.0",
             source = "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/1208e45d782fe18602c5eaf10e5758d5b0f24c03/Qwen3-0.6B-Q4_K_M.gguf"
         )
