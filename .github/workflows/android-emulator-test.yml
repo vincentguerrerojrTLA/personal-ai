@@ -17,7 +17,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - uses: android-actions/setup-android@v3
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug
@@ -29,6 +28,7 @@ jobs:
           profile: pixel_6
           disable-animations: true
           script: |
+            mkdir -p artifacts
             adb install -r android/app/build/outputs/apk/debug/app-debug.apk
             adb shell am force-stop com.kylow.mobile
             adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
