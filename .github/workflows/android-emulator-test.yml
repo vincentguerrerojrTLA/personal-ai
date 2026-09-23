@@ -30,8 +30,8 @@ jobs:
           arch: x86_64
           target: default
           profile: pixel_6
-          disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none -no-snapshot
           disable-linux-hw-accel: true
           script: |
             mkdir -p artifacts
