@@ -33,7 +33,7 @@ class MainActivity:AppCompatActivity(){
   findViewById<Button>(R.id.pcHomeButton).setOnClickListener{startActivity(Intent(this,if(RemotePcConfig.paired(this)) RemotePcActivity::class.java else RemotePcPairActivity::class.java))}
   findViewById<Button>(R.id.createHomeButton).setOnClickListener{prompt("Help me create ")}
   findViewById<Button>(R.id.learnHomeButton).setOnClickListener{prompt("Teach me about ")}
-  findViewById<Button>(R.id.moreHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
+  findViewById<Button>(R.id.moreHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}\n  findViewById<TextView>(R.id.bottomHome).setOnClickListener{transcript.clear();render();scroll.post{scroll.fullScroll(View.FOCUS_UP)}}\n  findViewById<TextView>(R.id.bottomChat).setOnClickListener{input.requestFocus()}\n  findViewById<TextView>(R.id.bottomTasks).setOnClickListener{prompt("Create a task: ")}\n  findViewById<TextView>(R.id.bottomMemories).setOnClickListener{append("Kylow","Memories are stored privately on this device. Memory management is still being completed.")}\n  findViewById<TextView>(R.id.bottomMore).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
   findViewById<Button>(R.id.canDoButton).setOnClickListener{prompt("What can you do?")}
   findViewById<Button>(R.id.planButton).setOnClickListener{prompt("Help me plan ")}
   findViewById<Button>(R.id.imageButton).setOnClickListener{prompt("Create an image of ")}
