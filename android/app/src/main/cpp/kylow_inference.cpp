@@ -74,6 +74,11 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_kylow_mobile_NativeInferenceBridge_generate(
     JNIEnv* env, jobject, jlong handle, jstring systemPrompt, jstring userText, jint maxTokens) {
     Engine* engine = fromHandle(handle);
+#ifndef KYLOW_HAS_LLAMA
+    (void) systemPrompt;
+    (void) userText;
+    (void) maxTokens;
+#endif
     if (!engine) {
         throwState(env, "Native inference engine is not initialized.");
         return nullptr;
