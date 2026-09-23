@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <mutex>
 #include <string>
+#include <vector>
 #ifdef KYLOW_HAS_LLAMA
 #include "llama.h"
 #endif
@@ -71,7 +72,7 @@ Java_com_kylow_mobile_NativeInferenceBridge_create(
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_kylow_mobile_NativeInferenceBridge_generate(
-    JNIEnv* env, jobject, jlong handle, jstring, jstring, jint) {
+    JNIEnv* env, jobject, jlong handle, jstring systemPrompt, jstring userText, jint maxTokens) {
     Engine* engine = fromHandle(handle);
     if (!engine) {
         throwState(env, "Native inference engine is not initialized.");
@@ -83,9 +84,63 @@ Java_com_kylow_mobile_NativeInferenceBridge_generate(
         throwState(env, "llama.cpp backend is not initialized.");
         return nullptr;
     }
-    // Model/context ownership is now real. Tokenization and decode/sampling are
-    // implemented in the next slice rather than returning fabricated output.
-    throwState(env, "llama.cpp model loaded; generation pipeline is not enabled yet.");
+    const std::string prompt = toString(env, systemPrompt) + "\nUser: " +
+        toString(env, userText) + "\nAssistant:";
+    if (prompt.empty() || maxTokens <= 0) {
+        throwState(env, "Invalid inference request.");
+        return nullptr;
+    }
+
+    const llama_vocab* vocab = llama_model_get_vocab(engine->model);
+    const int32_t tokenCount = -llama_tokenize(
+        vocab, prompt.c_str(), static_cast<int32_t>(prompt.size()),
+        nullptr, 0, true, true);
+    if (tokenCount <= 0) {
+        throwState(env, "Unable to tokenize prompt.");
+        return nullptr;
+    }
+
+    std::vector<llama_token> tokens(static_cast<size_t>(tokenCount));
+    if (llama_tokenize(vocab, prompt.c_str(), static_cast<int32_t>(prompt.size()),
+                       tokens.data(), tokenCount, true, true) < 0) {
+        throwState(env, "Prompt tokenization failed.");
+        return nullptr;
+    }
+
+    llama_batch batch = llama_batch_get_one(tokens.data(), tokenCount);
+    if (llama_decode(engine->context, batch) != 0) {
+        throwState(env, "Prompt decode failed.");
+        return nullptr;
+    }
+
+    llama_sampler* sampler = llama_sampler_chain_init(llama_sampler_chain_default_params());
+    llama_sampler_chain_add(sampler, llama_sampler_init_temp(0.7f));
+    llama_sampler_chain_add(sampler, llama_sampler_init_dist(0));
+
+    std::string output;
+    for (int i = 0; i < maxTokens; ++i) {
+        const llama_token token = llama_sampler_sample(sampler, engine->context, -1);
+        if (llama_vocab_is_eog(vocab, token)) break;
+
+        char piece[256];
+        const int32_t n = llama_token_to_piece(vocab, token, piece, sizeof(piece), 0, true);
+        if (n < 0) {
+            llama_sampler_free(sampler);
+            throwState(env, "Token conversion failed.");
+            return nullptr;
+        }
+        output.append(piece, static_cast<size_t>(n));
+
+        llama_token next = token;
+        batch = llama_batch_get_one(&next, 1);
+        if (llama_decode(engine->context, batch) != 0) {
+            llama_sampler_free(sampler);
+            throwState(env, "Generation decode failed.");
+            return nullptr;
+        }
+    }
+    llama_sampler_free(sampler);
+    return env->NewStringUTF(output.c_str());
 #else
     throwState(env, "Native bridge loaded, but model inference backend is not linked.");
 #endif
