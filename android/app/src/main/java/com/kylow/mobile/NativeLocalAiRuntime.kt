@@ -4,10 +4,11 @@ import java.util.concurrent.Executors
 
 /**
  * LocalAiRuntime backed by Kylow's packaged native inference bridge.
- * Model work stays off the Android UI thread.
+ * Only the exact pinned model is permitted to enter the native runtime.
  */
 class NativeLocalAiRuntime(
     private val modelManager: LocalModelManager,
+    private val manifest: ModelManifest = PINNED_MODEL,
     private val contextSize: Int = 2048
 ) : LocalAiRuntime {
     private val executor = Executors.newSingleThreadExecutor()
@@ -20,6 +21,10 @@ class NativeLocalAiRuntime(
             val model = modelManager.installed()
             runtimeState = when {
                 model == null -> RuntimeState.Unavailable
+                !InferenceBackendPolicy.supports(manifest) ->
+                    RuntimeState.Error("Installed model is not approved for Kylow's inference backend.")
+                !model.sha256.equals(manifest.sha256, ignoreCase = true) ->
+                    RuntimeState.Error("Installed model failed integrity verification.")
                 !NativeInferenceBridge.available -> RuntimeState.Error("Native inference engine is not packaged.")
                 else -> runCatching {
                     handle = NativeInferenceBridge.create(model.file.absolutePath, contextSize)
@@ -41,12 +46,7 @@ class NativeLocalAiRuntime(
         }
         executor.execute {
             val result = runCatching {
-                NativeInferenceBridge.generate(
-                    handle,
-                    request.systemPrompt,
-                    request.userText,
-                    request.maxTokens
-                )
+                NativeInferenceBridge.generate(handle, request.systemPrompt, request.userText, request.maxTokens)
             }
             result.getOrNull()?.let(onToken)
             onComplete(result)
@@ -56,9 +56,18 @@ class NativeLocalAiRuntime(
     override fun close() {
         val current = handle
         handle = 0
-        if (current != 0L && NativeInferenceBridge.available) {
-            runCatching { NativeInferenceBridge.destroy(current) }
-        }
+        if (current != 0L && NativeInferenceBridge.available) runCatching { NativeInferenceBridge.destroy(current) }
         executor.shutdown()
+    }
+
+    companion object {
+        val PINNED_MODEL = ModelManifest(
+            id = "qwen3-0.6b-q4-k-m",
+            displayName = "Qwen3-0.6B-Q4_K_M",
+            sha256 = "b0638f08417a2d3c8652760462eb5407c6e30173cf9608ad0820757a281eea0e",
+            sizeBytes = 397_000_000L, // informational until upstream exposes an exact byte count; SHA-256 is authoritative
+            license = "Apache-2.0",
+            source = "https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/1208e45d782fe18602c5eaf10e5758d5b0f24c03/Qwen3-0.6B-Q4_K_M.gguf"
+        )
     }
 }
