@@ -22,16 +22,16 @@ class MainActivity:AppCompatActivity(){
   findViewById<TextView>(R.id.toolsButton).setOnClickListener{tools.visibility=if(tools.visibility==View.VISIBLE)View.GONE else View.VISIBLE}
   findViewById<TextView>(R.id.menuButton).setOnClickListener{val items=store.list();val labels=mutableListOf("New chat","Files & Library","Plugins","Settings","Check for updates");items.take(20).forEach{labels.add((if(it.pinned)"★ " else "")+it.title)};android.app.AlertDialog.Builder(this).setTitle("Kylow").setItems(labels.toTypedArray()){_,p->when{p==0->{persist();current=null;transcript.clear();render()};p==1->append("Kylow","Library is ready for local files and future connected storage.");p==2->append("Kylow","Plugins are optional extensions. Kylow remains usable without them.");p==3->append("Kylow","Settings will manage privacy, memory, devices and plugins.");p==4->{val updater=AppUpdater(this);updater.check({u->if(u==null)Toast.makeText(this,"Kylow is up to date",Toast.LENGTH_SHORT).show() else android.app.AlertDialog.Builder(this).setTitle("Kylow "+u.versionName+" available").setMessage("Download the approved update now?").setPositiveButton("Update"){_,_->updater.download(u){Toast.makeText(this,"Update downloading",Toast.LENGTH_SHORT).show()}}.setNegativeButton("Later",null).show()},{e->Toast.makeText(this,e,Toast.LENGTH_LONG).show()})};else->{val c=items[p-5];current=c.id;transcript.clear();transcript.append(c.body);render()}}}.show()}
   findViewById<TextView>(R.id.newChatButton).setOnClickListener{persist();current=null;transcript.clear();chat.text="";welcome.visibility=View.VISIBLE;input.text.clear()}
-  findViewById<Button>(R.id.filesButton).setOnClickListener{append("Kylow","Local Library is enabled. File importing and plugin-backed storage are the next integration layer.")}
-  findViewById<Button>(R.id.webButton).setOnClickListener{append("Kylow","Web is an optional tool; core Kylow remains independent.")}
-  findViewById<Button>(R.id.tasksButton).setOnClickListener{append("Kylow","Tasks are part of Kylow and persist independently of a PC.")}
+  findViewById<Button>(R.id.filesButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
+  findViewById<Button>(R.id.webButton).setOnClickListener{prompt("Search the web for ")}
+  findViewById<Button>(R.id.tasksButton).setOnClickListener{prompt("Create a task: ")}
   fun prompt(text:String){input.setText(text);input.setSelection(input.text.length);input.requestFocus()}
   findViewById<Button>(R.id.chatHomeButton).setOnClickListener{input.requestFocus()}
-  findViewById<Button>(R.id.tasksHomeButton).setOnClickListener{append("Kylow","Tasks are ready for the next functional integration layer.")}
-  findViewById<Button>(R.id.filesHomeButton).setOnClickListener{append("Kylow","Local Library is ready for file integration.")}
-  findViewById<Button>(R.id.webHomeButton).setOnClickListener{append("Kylow","Web Search will remain optional; core Kylow stays independent.")}
+  findViewById<Button>(R.id.tasksHomeButton).setOnClickListener{prompt("Create a task: ")}
+  findViewById<Button>(R.id.filesHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
+  findViewById<Button>(R.id.webHomeButton).setOnClickListener{prompt("Search the web for ")}
   findViewById<Button>(R.id.pcHomeButton).setOnClickListener{startActivity(Intent(this,if(RemotePcConfig.paired(this)) RemotePcActivity::class.java else RemotePcPairActivity::class.java))}
-  findViewById<Button>(R.id.createHomeButton).setOnClickListener{prompt("Create ")}
+  findViewById<Button>(R.id.createHomeButton).setOnClickListener{prompt("Help me create ")}
   findViewById<Button>(R.id.learnHomeButton).setOnClickListener{prompt("Teach me about ")}
   findViewById<Button>(R.id.moreHomeButton).setOnClickListener{findViewById<TextView>(R.id.menuButton).performClick()}
   findViewById<Button>(R.id.canDoButton).setOnClickListener{prompt("What can you do?")}
