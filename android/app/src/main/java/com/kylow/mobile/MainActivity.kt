@@ -10,14 +10,14 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.UUID
 
 class MainActivity:AppCompatActivity(){
- private lateinit var store:ChatStore; private var current:String?=null; private val transcript=StringBuilder()
+ private lateinit var store:ChatStore; private var current:String?=null; private val transcript=StringBuilder(); private val ai:LocalAiRuntime=NoModelRuntime()
  override fun onCreate(s:Bundle?){super.onCreate(s);setContentView(R.layout.activity_main)
   val root=findViewById<View>(R.id.rootLayout);ViewCompat.setOnApplyWindowInsetsListener(root){v,i->val b=i.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime());v.setPadding(b.left,b.top,b.right,b.bottom);i}
   store=ChatStore(this);val input=findViewById<EditText>(R.id.messageInput);val chat=findViewById<TextView>(R.id.chatText);val welcome=findViewById<View>(R.id.welcomePanel);val tools=findViewById<View>(R.id.toolBar);val scroll=findViewById<ScrollView>(R.id.chatScroll)
   fun render(){chat.text=transcript.toString();welcome.visibility=if(transcript.isEmpty())View.VISIBLE else View.GONE;scroll.post{scroll.fullScroll(View.FOCUS_DOWN)}}
   fun persist(){if(transcript.isEmpty())return;val id=current?:UUID.randomUUID().toString().also{current=it};store.save(id,transcript.toString())}
   fun append(who:String,text:String){if(transcript.isNotEmpty())transcript.append("\n\n");transcript.append(who).append("\n").append(text);persist();render()}
-  fun send(){val q=input.text.toString().trim();if(q.isEmpty())return;append("You",q);input.text.clear();append("Kylow",localReply(q))}
+  fun send(){val q=input.text.toString().trim();if(q.isEmpty())return;append("You",q);input.text.clear();when(ai.state){RuntimeState.Ready->ai.generate(InferenceRequest(q),{}, {r->runOnUiThread{append("Kylow",r.getOrElse{"Local AI error: "+(it.message?:"unknown error")})}});RuntimeState.Loading->append("Kylow","My local model is still loading.");is RuntimeState.Error->append("Kylow","My local AI runtime needs attention.");RuntimeState.Unavailable->append("Kylow","No local AI model is installed yet. Core chat storage and device features remain available.")}}
   findViewById<TextView>(R.id.sendButton).setOnClickListener{send()};input.setOnEditorActionListener{_,id,_->if(id==EditorInfo.IME_ACTION_SEND){send();true}else false}
   fun prompt(text:String){input.setText(text);input.setSelection(input.text.length);input.requestFocus()}
   findViewById<TextView>(R.id.toolsButton).setOnClickListener{tools.visibility=if(tools.visibility==View.VISIBLE)View.GONE else View.VISIBLE}
@@ -39,5 +39,5 @@ class MainActivity:AppCompatActivity(){
   findViewById<Button>(R.id.imageButton).setOnClickListener{prompt("Create an image of ")}
   store.latest()?.let{current=it.id;transcript.append(it.body);render()}
  }
- private fun localReply(q:String)=when{q.lowercase().matches(Regex(".*\\b(hi|hello|hey)\\b.*"))->"Hey! I’m Kylow. I’m running directly on this phone.";else->"I received that locally. Persistent chat storage is active; the independent model runtime is the next major engine layer."}
+ override fun onDestroy(){ai.close();super.onDestroy()}
 }
