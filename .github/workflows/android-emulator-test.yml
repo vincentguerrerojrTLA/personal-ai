@@ -28,8 +28,11 @@ jobs:
         with:
           api-level: 35
           arch: x86_64
+          target: default
           profile: pixel_6
           disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-linux-hw-accel: true
           script: |
             mkdir -p artifacts
             adb install -r android/app/build/outputs/apk/debug/app-debug.apk
