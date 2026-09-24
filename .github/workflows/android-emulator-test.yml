@@ -30,21 +30,26 @@ jobs:
           arch: x86_64
           target: default
           profile: pixel_6
-          disable-animations: false
+          disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none -no-snapshot
           disable-linux-hw-accel: true
           script: |
             mkdir -p artifacts
             adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+            adb shell settings put global window_animation_scale 0 || true
+            adb shell settings put global transition_animation_scale 0 || true
+            adb shell settings put global animator_duration_scale 0 || true
             adb shell am force-stop com.kylow.mobile
             adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
             sleep 5
             adb shell dumpsys window | grep -q com.kylow.mobile
             adb logcat -d > artifacts/logcat.txt
-            # Dismiss unrelated host-system ANR dialogs so visual evidence actually captures Kylow.
+            # Remove host-system ANR dialogs, then explicitly bring Kylow back to the foreground.
             adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS || true
             adb shell input keyevent KEYCODE_ESCAPE || true
-            sleep 1
+            adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
+            sleep 2
+            adb shell dumpsys window | grep -q com.kylow.mobile
             adb exec-out screencap -p > artifacts/kylow-home.png
             adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
             adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
