@@ -42,13 +42,10 @@ jobs:
             adb shell input keyevent KEYCODE_WAKEUP || true
             adb shell wm dismiss-keyguard || true
             adb shell input keyevent 82 || true
+            adb logcat -c
             adb shell am force-stop com.kylow.mobile
-            adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
+            adb shell am start -W -n com.kylow.mobile/.MainActivity
             sleep 5
-            adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS || true
-            adb shell input keyevent KEYCODE_ESCAPE || true
-            adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
-            sleep 2
             adb shell dumpsys window > artifacts/window.txt
             grep -q com.kylow.mobile artifacts/window.txt
             adb logcat -d > artifacts/logcat.txt
