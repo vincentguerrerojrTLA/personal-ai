@@ -30,19 +30,29 @@ jobs:
           arch: x86_64
           target: default
           profile: pixel_6
-          disable-animations: false
+          disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -camera-front none -no-snapshot
           disable-linux-hw-accel: true
           script: |
             mkdir -p artifacts
             adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+            adb shell settings put global window_animation_scale 0 || true
+            adb shell settings put global transition_animation_scale 0 || true
+            adb shell settings put global animator_duration_scale 0 || true
+            adb shell input keyevent KEYCODE_WAKEUP || true
+            adb shell wm dismiss-keyguard || true
+            adb shell input keyevent 82 || true
+            adb logcat -c
             adb shell am force-stop com.kylow.mobile
-            adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
+            adb shell am start -W -n com.kylow.mobile/.MainActivity
             sleep 5
-            adb shell dumpsys window | grep -q com.kylow.mobile
+            adb shell dumpsys window > artifacts/window.txt
+            grep -q com.kylow.mobile artifacts/window.txt
             adb logcat -d > artifacts/logcat.txt
-            # Host SystemUI/Launcher ANRs are emulator-infrastructure noise; Kylow ANRs remain fatal below.
             adb exec-out screencap -p > artifacts/kylow-home.png
+            # A black/empty screenshot is invalid visual evidence even if the process is healthy.
+            test "$(wc -c < artifacts/kylow-home.png)" -gt 1000
+            grep -q "com.kylow.mobile" artifacts/window.txt
             adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
             adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
             if grep -E "Process: com.kylow.mobile|ANR in com.kylow.mobile" artifacts/logcat.txt; then exit 1; fi
