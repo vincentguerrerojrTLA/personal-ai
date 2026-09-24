@@ -1,0 +1,33 @@
+name: Publish Kylow Phone Test
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-phone-test.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+      - name: Build phone-test APK
+        working-directory: android
+        run: gradle assembleDebug
+      - name: Publish persistent phone-test release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk Kylow-phone-test.apk
+          gh release delete phone-test-latest --yes --cleanup-tag || true
+          gh release create phone-test-latest Kylow-phone-test.apk --title "Kylow Phone Test" --notes "Automated Android phone-test build. Debug-signed; for Kylow development testing only." --prerelease --target main
