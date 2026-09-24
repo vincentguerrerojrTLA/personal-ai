@@ -1,7 +1,7 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android") }
 android {
  namespace="com.kylow.mobile"; compileSdk=35
- defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=12; versionName="0.9.1"; ndk { abiFilters += listOf("arm64-v8a", "x86_64") }; externalNativeBuild { cmake { cppFlags += "-std=c++17" } } }
+ defaultConfig { applicationId="com.kylow.mobile"; minSdk=26; targetSdk=35; versionCode=13; versionName="0.10.0"; ndk { abiFilters += listOf("arm64-v8a", "x86_64") }; externalNativeBuild { cmake { cppFlags += "-std=c++17" } } }
  signingConfigs {
   create("release") {
    storeFile=file(System.getenv("KYLOW_KEYSTORE_PATH") ?: "kylow-release.jks")
