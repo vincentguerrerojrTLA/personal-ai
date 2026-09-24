@@ -41,7 +41,10 @@ jobs:
             sleep 5
             adb shell dumpsys window | grep -q com.kylow.mobile
             adb logcat -d > artifacts/logcat.txt
-            # Host SystemUI/Launcher ANRs are emulator-infrastructure noise; Kylow ANRs remain fatal below.
+            # Dismiss unrelated host-system ANR dialogs so visual evidence actually captures Kylow.
+            adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS || true
+            adb shell input keyevent KEYCODE_ESCAPE || true
+            sleep 1
             adb exec-out screencap -p > artifacts/kylow-home.png
             adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
             adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
