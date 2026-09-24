@@ -39,18 +39,29 @@ jobs:
             adb shell settings put global window_animation_scale 0 || true
             adb shell settings put global transition_animation_scale 0 || true
             adb shell settings put global animator_duration_scale 0 || true
+            adb shell input keyevent KEYCODE_WAKEUP || true
+            adb shell wm dismiss-keyguard || true
+            adb shell input keyevent 82 || true
             adb shell am force-stop com.kylow.mobile
             adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
             sleep 5
-            adb shell dumpsys window | grep -q com.kylow.mobile
-            adb logcat -d > artifacts/logcat.txt
-            # Remove host-system ANR dialogs, then explicitly bring Kylow back to the foreground.
             adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS || true
             adb shell input keyevent KEYCODE_ESCAPE || true
             adb shell monkey -p com.kylow.mobile -c android.intent.category.LAUNCHER 1
             sleep 2
-            adb shell dumpsys window | grep -q com.kylow.mobile
+            adb shell dumpsys window > artifacts/window.txt
+            grep -q com.kylow.mobile artifacts/window.txt
+            adb logcat -d > artifacts/logcat.txt
             adb exec-out screencap -p > artifacts/kylow-home.png
+            # A black/empty screenshot is invalid visual evidence even if the process is healthy.
+            python3 - <<'PY'
+            from PIL import Image
+            im=Image.open("artifacts/kylow-home.png").convert("RGB")
+            lo,hi=im.getextrema()[0][0],max(v[1] for v in im.getextrema())
+            if hi <= 5:
+                raise SystemExit("Invalid visual evidence: screenshot is black")
+            print("Screenshot visual range OK:", lo, hi)
+            PY
             adb shell uiautomator dump /data/local/tmp/kylow-ui.xml || true
             adb pull /data/local/tmp/kylow-ui.xml artifacts/kylow-ui.xml || true
             if grep -E "Process: com.kylow.mobile|ANR in com.kylow.mobile" artifacts/logcat.txt; then exit 1; fi
