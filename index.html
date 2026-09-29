@@ -1,170 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#030712" />
-  <meta name="description" content="PERSONAL AI — phase-based development command center and live roadmap." />
-  <title>PERSONAL AI — Build Phases</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23030712'/%3E%3Cpath d='M14 32h36M32 14v36' stroke='%2359d9ff' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%232b7cff' stroke-width='2'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="./assets/styles.css" />
-  <link rel="stylesheet" href="./assets/gauges.css" />
-  <style>
-    .kylow-platform-progress{margin:30px 0 8px;border:1px solid var(--line2);background:linear-gradient(140deg,rgba(7,18,34,.92),rgba(4,12,24,.78));box-shadow:var(--shadow);overflow:hidden}
-    .kylow-progress-head{display:flex;align-items:end;justify-content:space-between;gap:18px;padding:22px 24px;border-bottom:1px solid var(--line)}
-    .kylow-progress-head h2{margin:8px 0 0;font-size:clamp(24px,3vw,42px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase}
-    .kylow-progress-head p{margin:0;max-width:540px;text-align:right;color:var(--muted);font-size:12px;line-height:1.55}
-    .kylow-progress-grid{display:grid;grid-template-columns:1fr 1fr}
-    .kylow-progress-card{padding:26px 24px 24px;position:relative;min-height:230px}
-    .kylow-progress-card+ .kylow-progress-card{border-left:1px solid var(--line)}
-    .kylow-platform-label{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#dbe9f8;font:800 10px/1 var(--mono);letter-spacing:.11em;text-transform:uppercase}
-    .kylow-platform-label span:last-child{color:var(--cyan)}
-    .kylow-percent-row{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:19px 0 17px}
-    .kylow-percent{font:900 clamp(54px,7vw,86px)/.82 var(--sans);letter-spacing:-.06em;color:white}
-    .kylow-percent small{font-size:.28em;color:var(--cyan);letter-spacing:0;margin-left:4px}
-    .kylow-state{color:var(--muted);font:800 9px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-align:right}
-    .kylow-track{height:10px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid rgba(255,255,255,.04)}
-    .kylow-track i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));box-shadow:0 0 20px rgba(89,217,255,.42)}
-    .kylow-progress-meta{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:#8ca4bd;font:700 9px/1.35 var(--mono);letter-spacing:.05em;text-transform:uppercase}
-    .kylow-progress-meta b{color:#dcecff;font-weight:800}
-    .kylow-progress-foot{padding:12px 24px;border-top:1px solid var(--line);color:#718aa4;font:700 9px/1.4 var(--mono);letter-spacing:.07em;text-transform:uppercase}
-    @media(max-width:760px){.kylow-progress-head{align-items:flex-start;flex-direction:column}.kylow-progress-head p{text-align:left}.kylow-progress-grid{grid-template-columns:1fr}.kylow-progress-card+ .kylow-progress-card{border-left:0;border-top:1px solid var(--line)}.kylow-progress-card{min-height:205px}.kylow-percent{font-size:64px}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f5ef">
+<meta name="description" content="Kylow is a personal AI being built to work across your devices, with private memory, approved tools, and user-controlled automation.">
+<title>Kylow — He's just a good boy.</title>
+<link rel="icon" type="image/png" href="./android/app/src/main/res/drawable-nodpi/kylow_launcher_512.png">
+<link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-<div class="app">
-  <canvas id="network" aria-hidden="true"></canvas><div class="grid"></div><div class="glow"></div><div class="noise"></div>
-
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true"></div>
-      <div><div class="brand-title">PERSONAL AI</div><small id="brandVersion">COMMAND CENTER</small></div>
-    </div>
-    <nav class="nav" aria-label="Primary">
-      <button data-nav="home" class="active">Home</button><button data-nav="phases">Phases</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
-    </nav>
-    <div class="head-right"><div class="pill live" id="liveIndicator"><span class="pulse"></span><span id="liveText">CONNECTING</span></div><div class="pill" id="headerRelease">PERSONAL AI v1</div><button class="mobile-menu" id="menuBtn">MENU</button></div>
-  </header>
-  <div class="mobile-drawer" id="mobileDrawer">
-    <button data-nav="home">Home</button><button data-nav="phases">Phases</button><button data-nav="roadmap">Roadmap</button><button data-nav="systems">Systems</button><button data-nav="agents">Agents</button><button data-nav="integrations">Integrations</button><button data-nav="activity">Activity</button>
-  </div>
-
-  <main class="main">
-    <section class="screen active" data-screen="home">
-      <div class="home-grid">
-        <div class="hero">
-          <div class="eyebrow">Phase-Based Development / GitHub Live</div>
-          <h1 id="heroTitle">THE BUILD<span>IN MOTION</span></h1>
-          <p class="hero-copy" id="heroCopy">Loading authoritative Personal AI build state…</p>
-          <div class="hero-actions"><button class="btn primary" id="viewPhases">Open Build Phases</button><button class="btn" id="viewRoadmap">Detailed Roadmap</button><button class="btn" id="viewActivity">Activity</button></div>
-          <div class="principles" id="principles"></div>
-        </div>
-        <aside class="release-card">
-          <div class="release-head"><b>CURRENT BUILD STATE</b><span id="homeUpdated">—</span></div>
-          <div class="release-main"><small>Current release</small><strong id="releaseName">PERSONAL AI v1</strong><small style="margin-top:18px">Active phase</small><strong id="focusTitle" style="font-size:20px">Loading…</strong><p id="focusSummary"></p></div>
-          <div class="metric"><div class="metric-row"><span>FOUNDATION</span><span id="foundationLabel">—</span></div><div class="bar"><i id="foundationBar" style="width:0"></i></div></div>
-          <div class="metric"><div class="metric-row"><span>PERSONAL AI v1</span><span id="v1Label">—</span></div><div class="bar"><i id="v1Bar" style="width:0"></i></div></div>
-          <div class="status-grid" id="statusGrid"></div>
-        </aside>
-      </div>
-
-      <section class="kylow-platform-progress" aria-labelledby="kylowPlatformTitle">
-        <div class="kylow-progress-head">
-          <div><div class="eyebrow">Kylow Platform Build</div><h2 id="kylowPlatformTitle">Desktop + Mobile Progress</h2></div>
-          <p>Side-by-side verified completion toward a usable Kylow release on each platform. Percentages only advance when build work is completed and confirmed.</p>
-        </div>
-        <div class="kylow-progress-grid">
-          <article class="kylow-progress-card">
-            <div class="kylow-platform-label"><span>Desktop Kylow</span><span>Windows / EXE</span></div>
-            <div class="kylow-percent-row"><div class="kylow-percent">40<small>%</small></div><div class="kylow-state">Active build<br>4 / 10 major phases complete</div></div>
-            <div class="kylow-track" aria-label="Desktop Kylow 40 percent complete"><i style="width:40%"></i></div>
-            <div class="kylow-progress-meta"><span><b>Current:</b> Unified Kylow EXE</span><span><b>Next:</b> Verified EXE work</span></div>
-          </article>
-          <article class="kylow-progress-card">
-            <div class="kylow-platform-label"><span>Mobile Kylow</span><span>Android / APK</span></div>
-            <div class="kylow-percent-row"><div class="kylow-percent">0<small>%</small></div><div class="kylow-state">Planned build<br>No verified mobile phase closed yet</div></div>
-            <div class="kylow-track" aria-label="Mobile Kylow 0 percent complete"><i style="width:0%"></i></div>
-            <div class="kylow-progress-meta"><span><b>Current:</b> Pre-build planning</span><span><b>Target:</b> Standalone APK</span></div>
-          </article>
-        </div>
-        <div class="kylow-progress-foot">Completion is evidence-based: planning alone does not increase the build percentage.</div>
-      </section>
-
-      <div class="home-gauge-shell" id="homeGaugeShell">
-        <div class="progress-gauge-panel">
-          <div class="progress-gauge-card">
-            <div class="progress-gauge" style="--p:40"><div class="progress-gauge-value">40<small>%</small></div></div>
-            <div class="progress-gauge-copy"><b>Overall Build Progress</b><strong>4 of 10 major phases fully complete</strong><p>Overall percentage across the major build phases.</p><span class="gauge-note">LIVE FROM PHASE DATA</span></div>
-          </div>
-          <div class="progress-gauge-card current">
-            <div class="progress-gauge" style="--p:0"><div class="progress-gauge-value">0<small>%</small></div></div>
-            <div class="progress-gauge-copy"><b>Current Phase Progress</b><strong>Phase 04 · Unified PersonalAI.exe v1</strong><p>The active EXE phase starts at 0% until verified work closes items in this phase.</p><span class="gauge-note">NEXT · PERSONAL AI v1 STEP 4</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="home-phase-block">
-        <div class="phase-block-title"><div><div class="eyebrow">Build Sequence</div><h2>Where we are → what comes next</h2></div><button class="btn" id="openAllPhases">See Every Phase</button></div>
-        <div class="home-phase-strip" id="homePhaseStrip"></div>
-      </div>
-    </section>
-
-    <section class="screen" data-screen="phases">
-      <div class="section-head"><div><div class="eyebrow">Primary Build Structure</div><h2>Build Phases</h2></div><p>Each major stage is separated into its own phase. Completed phases show what was built and how it was verified. The active EXE phase is isolated from what comes after it so progress is easy to read.</p></div>
-
-      <div class="home-gauge-shell phase-summary-gauges">
-        <div class="progress-gauge-panel">
-          <div class="progress-gauge-card">
-            <div class="progress-gauge" style="--p:40"><div class="progress-gauge-value">40<small>%</small></div></div>
-            <div class="progress-gauge-copy"><b>Overall Build Progress</b><strong>4 of 10 major phases fully complete</strong><p>Completed, active, and planned phases are combined into one visible overall gauge.</p><span class="gauge-note">PHASE-BASED CALCULATION</span></div>
-          </div>
-          <div class="progress-gauge-card current">
-            <div class="progress-gauge" style="--p:0"><div class="progress-gauge-value">0<small>%</small></div></div>
-            <div class="progress-gauge-copy"><b>Current Phase Progress</b><strong>Phase 04 · Unified PersonalAI.exe v1</strong><p>This gauge increases only when verified EXE-phase work is completed.</p><span class="gauge-note">CURRENT ACTIVE PHASE</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="phase-rail" id="phaseRail"></div>
-      <div class="phase-sections" id="phaseSections"></div>
-    </section>
-
-    <section class="screen" data-screen="roadmap">
-      <div class="section-head"><div><div class="eyebrow">Milestone-Level Detail</div><h2>Roadmap</h2></div><p>This is the lower-level view beneath the phase structure. Use it when you want the individual foundation gates, Personal AI v1 steps, objectives, verification evidence, and exact next action.</p></div>
-      <div class="toolbar"><button class="filter active" data-filter="ALL">All</button><button class="filter" data-filter="COMPLETE">Complete</button><button class="filter" data-filter="NEXT">Next</button><button class="filter" data-filter="PLANNED">Planned</button><input class="search" id="roadmapSearch" placeholder="Search gates, tests, capabilities…" /><div class="pill" id="roadmapCounts">—</div></div>
-      <div class="roadmap-layout"><div class="roadmap-list" id="roadmapList"></div><div class="detail-workspace" id="roadmapDetail"></div></div>
-    </section>
-
-    <section class="screen" data-screen="systems">
-      <div class="section-head"><div><div class="eyebrow">Runtime Architecture</div><h2>Systems</h2></div><p>Core systems are shown with their operating purpose, current verification state, and the safety boundary they must preserve.</p></div>
-      <div class="card-grid" id="systemsGrid"></div>
-    </section>
-
-    <section class="screen" data-screen="agents">
-      <div class="section-head"><div><div class="eyebrow">Scoped Intelligence</div><h2>Agents</h2></div><p>Specialist agents inherit owner governance and operate within limited task/project permissions. Child agents do not create a route around the protected core.</p></div>
-      <div class="agent-grid" id="agentsGrid"></div>
-    </section>
-
-    <section class="screen" data-screen="integrations">
-      <div class="section-head"><div><div class="eyebrow">Replaceable Connections</div><h2>Integrations</h2></div><p>Models, services, tools, and external projects are integrations — not the identity of the Personal AI. External projects remain isolated.</p></div>
-      <div class="integration-grid" id="integrationsGrid"></div>
-    </section>
-
-    <section class="screen" data-screen="activity">
-      <div class="section-head"><div><div class="eyebrow">Verified Build Events</div><h2>Activity</h2></div><p id="activityCount">Loading activity…</p></div>
-      <div class="activity-layout">
-        <div class="activity-feed" id="activityFeed"></div>
-        <aside class="panel live-panel">
-          <div class="eyebrow">Live Data</div><h3>GitHub Status Bridge</h3><p>The website polls the public roadmap and phase data from GitHub. When the Personal AI build advances and its public status is committed, this command center can reflect the new phase without rebuilding the interface.</p>
-          <div class="live-kv"><div><span>Current phase</span><span id="activityPhase">—</span></div><div><span>Current milestone</span><span id="activityCurrent">—</span></div><div><span>Data source</span><span id="dataSource">—</span></div><div><span>Last poll</span><span id="lastFetch">—</span></div><div><span>Roadmap updated</span><span id="sourceUpdated">—</span></div><div><span>Public mode</span><span>READ ONLY</span></div></div>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer"><span>PERSONAL AI / PHASE-BASED DEVELOPMENT COMMAND CENTER</span><span>Owner-controlled · Local-first · GitHub source of truth</span></footer>
-</div>
-<script src="./assets/app.js"></script>
-<script src="./assets/gauges.js"></script>
-</body>
-</html>
+<header class="site-header"><a class="brand" href="#top"><img src="./android/app/src/main/res/drawable-nodpi/kylow_launcher_512.png" alt=""><span>Kylow</span></a><nav aria-label="Primary"><a href="#what">What is Kylow?</a><a href="#platforms">Platforms</a><a href="#privacy">Privacy</a><a href="#roadmap">Roadmap</a></nav><a class="button small" href="#download">Get Kylow</a></header>
+<main id="top">
+<section class="hero"><div class="hero-copy"><span class="kicker">PERSONAL AI · BUILT AROUND YOU</span><h1>Your AI.<br><em>Your devices.</em><br>Your control.</h1><p>Kylow is a general-purpose personal AI designed to help you think, create, organize, research, and—when you allow it—work across your own devices and tools.</p><div class="actions"><a class="button" href="#download">Get early builds</a><a class="button ghost" href="#what">See how Kylow works</a></div><div class="trustline"><span>Private by design</span><span>Permission-based actions</span><span>Windows + Android</span></div></div><div class="hero-art"><div class="art-card"><img src="./android/app/src/main/res/drawable-nodpi/kylow_ui_600.jpg" alt="Kylow app artwork featuring the friendly black dog mascot"><div class="art-caption"><b>He's just a good boy.</b><span>One Kylow. Wherever you are.</span></div></div></div></section>
+<section class="statement" id="what"><span class="kicker">NOT JUST ANOTHER CHAT WINDOW</span><h2>One AI that can grow with the way you work.</h2><p>Kylow is being built as a single AI core with interfaces for your phone and computer. Conversation is only the beginning: memory, files, research, creation, approved apps, device control, and specialized agents can all become tools of the same Kylow.</p></section>
+<section class="feature-grid"><article><span>01</span><h3>Talk naturally</h3><p>A familiar conversation-first interface for questions, planning, writing, coding, and everyday work.</p></article><article><span>02</span><h3>Remember usefully</h3><p>Private memory is designed to preserve useful context while keeping controls for access, export, recovery, and deletion.</p></article><article><span>03</span><h3>Use approved tools</h3><p>Connect capabilities intentionally. Kylow should know what it may do, what needs confirmation, and what stays off-limits.</p></article><article><span>04</span><h3>Work across devices</h3><p>Link your own devices securely so the same Kylow can move with you without turning your computer into a public endpoint.</p></article><article><span>05</span><h3>Create and build</h3><p>The long-term platform includes coding, files, research, multimodal creation, and task-specific worker agents.</p></article><article><span>06</span><h3>Stay yours</h3><p>Each installation gets its own identity, data boundaries, permissions, and device relationships. Another user's Kylow is not yours.</p></article></section>
+<section class="platforms" id="platforms"><div><span class="kicker">ONE CORE · MULTIPLE ENDPOINTS</span><h2>Kylow goes where you go.</h2></div><div class="platform-cards"><article><b>Windows</b><h3>A real desktop app.</h3><p>The production target is a normal downloadable application—not PowerShell, Python, Git, or manual ports. Install, launch, pair, update.</p><span class="status">IN DEVELOPMENT</span></article><article><b>Android</b><h3>Independent on your phone.</h3><p>Kylow Mobile is designed to function on its own while optionally linking to your computer for approved remote capabilities.</p><span class="status">IN DEVELOPMENT</span></article><article><b>More</b><h3>Built to expand.</h3><p>The core architecture is intended to support future endpoints without creating a different AI for every device.</p><span class="status muted">PLANNED</span></article></div></section>
+<section class="privacy" id="privacy"><div class="privacy-copy"><span class="kicker">TRUST IS A FEATURE</span><h2>Power should come with boundaries.</h2><p>Kylow's architecture is being built around encrypted private data, authenticated devices, scoped permissions, secure transport, action logs, recovery controls, and confirmation for sensitive operations.</p><p class="fine">Security is an ongoing engineering process. Development builds are not represented as production-certified security products.</p></div><div class="privacy-list"><div><b>Encrypted private storage</b><span>Protect local memory and sensitive app data.</span></div><div><b>Least privilege</b><span>Ask only for capabilities that a feature actually needs.</span></div><div><b>Device identity</b><span>Authenticate linked devices instead of trusting an open network port.</span></div><div><b>Action authority</b><span>Separate routine approved actions from sensitive or irreversible ones.</span></div><div><b>Audit + recovery</b><span>Make important actions reviewable and provide revocation/recovery paths.</span></div></div></section>
+<section class="roadmap" id="roadmap"><span class="kicker">BUILD OPENLY · VERIFY BEFORE CLAIMING</span><h2>From prototype to downloadable product.</h2><div class="steps"><div class="done"><b>01</b><span>Trust & security foundation</span></div><div class="active"><b>02</b><span>Windows + Android productization</span></div><div><b>03</b><span>Local AI runtime & agent core</span></div><div><b>04</b><span>Device link & approved automation</span></div><div><b>05</b><span>Public release hardening</span></div></div><p class="roadmap-note">Progress advances when functionality is built and verified—not when it is merely planned.</p></section>
+<section class="download" id="download"><div><span class="kicker">EARLY DEVELOPMENT</span><h2>Kylow is becoming a product people can actually install.</h2><p>Windows and Android builds are actively being developed. Public downloads will appear here when the release path is safe and repeatable.</p></div><div class="download-actions"><button class="button disabled" disabled>Windows · Coming soon</button><button class="button disabled" disabled>Android · Coming soon</button><a class="text-link" href="https://github.com/vincentguerrerojrTLA/personal-ai">Follow development on GitHub →</a></div></section>
+</main>
+<footer><div class="brand"><img src="./android/app/src/main/res/drawable-nodpi/kylow_launcher_512.png" alt=""><span>Kylow</span></div><p>He's just a good boy.</p><span>© 2026 Kylow. Development preview.</span></footer>
+</body></html>
